@@ -449,8 +449,11 @@
           </div>
         </div>
 
-        <form class="form reveal" id="contactForm" action="contact.php" method="post" novalidate>
-          
+        <!-- Formulario SIN PHP. Envío vía Formspree (gratis, sin servidor).
+             Reemplazá TU_ID_FORMSPREE por tu endpoint real de https://formspree.io
+             (crear cuenta gratis → New form → copiar el ID, queda como f/abcdwxyz). -->
+        <form class="form reveal" id="contactForm" action="https://formspree.io/f/TU_ID_FORMSPREE" method="post" novalidate>
+          <div class="form__alert" id="formStatus" role="status" hidden></div>
 
           <div class="form__field">
             <label for="name" class="form__label">Nombre <span class="req">*</span></label>

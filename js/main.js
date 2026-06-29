@@ -400,10 +400,15 @@
   window.addEventListener("load", () => ScrollTrigger.refresh());
 
   /* ------------------------------------------------------------------
-     5. Validación del formulario (front) antes de enviar a contact.php
+     5. Formulario de contacto SIN PHP — validación + envío AJAX a Formspree.
+        Si el endpoint sigue siendo el placeholder (TU_ID_FORMSPREE), no envía
+        y guía a WhatsApp/Email. Honeypot anti-spam incluido.
   ------------------------------------------------------------------ */
   const form = document.getElementById("contactForm");
   if (form) {
+    const statusEl = document.getElementById("formStatus");
+    const submitLabel = form.querySelector(".form__submit-label");
+
     const setError = (field, msg) => {
       const input = form.querySelector(`#${field}`);
       const errEl = form.querySelector(`[data-error-for="${field}"]`);
@@ -417,35 +422,64 @@
 
     const validateEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-    form.addEventListener("submit", (e) => {
+    const showStatus = (msg, ok) => {
+      if (!statusEl) return;
+      statusEl.hidden = false;
+      statusEl.textContent = msg;
+      statusEl.classList.toggle("form__alert--ok", ok);
+      statusEl.classList.toggle("form__alert--err", !ok);
+    };
+
+    const validate = () => {
       let ok = true;
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const message = form.message.value.trim();
+      if (name.length < 2) { setError("name", "Ingresá tu nombre."); ok = false; }
+      else setError("name", "");
+      if (!validateEmail(email)) { setError("email", "Ingresá un email válido."); ok = false; }
+      else setError("email", "");
+      if (message.length < 10) { setError("message", "Contanos un poco más (mín. 10 caracteres)."); ok = false; }
+      else setError("message", "");
+      return ok;
+    };
 
-      if (name.length < 2) {
-        setError("name", "Ingresá tu nombre.");
-        ok = false;
-      } else setError("name", "");
-
-      if (!validateEmail(email)) {
-        setError("email", "Ingresá un email válido.");
-        ok = false;
-      } else setError("email", "");
-
-      if (message.length < 10) {
-        setError("message", "Contanos un poco más (mín. 10 caracteres).");
-        ok = false;
-      } else setError("message", "");
-
-      if (!ok) {
-        e.preventDefault();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!validate()) {
         const firstInvalid = form.querySelector(".is-invalid");
         if (firstInvalid) firstInvalid.focus();
-      } else {
-        // Feedback de envío
-        const btn = form.querySelector(".form__submit-label");
-        if (btn) btn.textContent = "Enviando…";
+        return;
+      }
+      // Honeypot: si el campo oculto viene completo, es un bot → éxito silencioso.
+      if (form.website && form.website.value) {
+        showStatus("¡Gracias! Tu mensaje fue enviado.", true);
+        form.reset();
+        return;
+      }
+      // Endpoint sin configurar todavía.
+      if (form.action.indexOf("TU_ID_FORMSPREE") !== -1) {
+        showStatus("El formulario todavía no está conectado. Escribinos por WhatsApp o email mientras tanto.", false);
+        return;
+      }
+
+      if (submitLabel) submitLabel.textContent = "Enviando…";
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (res.ok) {
+          showStatus("¡Gracias! Tu mensaje fue enviado. Te respondemos a la brevedad.", true);
+          form.reset();
+        } else {
+          showStatus("No pudimos enviar el mensaje. Probá de nuevo o escribinos por WhatsApp.", false);
+        }
+      } catch (err) {
+        showStatus("Error de conexión. Probá de nuevo o escribinos por WhatsApp.", false);
+      } finally {
+        if (submitLabel) submitLabel.textContent = "Enviar mensaje";
       }
     });
 
