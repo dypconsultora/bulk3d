@@ -1,0 +1,464 @@
+<?php
+/**
+ * BULK 3D STUDIO — Landing one-page.
+ * Dirección visual: MINIMALISMO EXAGERADO (tipografía gigante + aire + acento naranja).
+ * Stack: HTML5 + CSS + JS vanilla + PHP. GSAP por CDN.
+ */
+?>
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#E85D1C">
+
+  <title>BULK 3D STUDIO — Impresión 3D FDM a medida en Buenos Aires</title>
+  <meta name="description" content="Convertimos archivos en objetos reales. Impresión 3D FDM profesional en Buenos Aires para empresas, diseñadores y emprendedores. Prototipos y producción en serie con control dimensional.">
+  <meta name="author" content="BULK 3D STUDIO">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="BULK 3D STUDIO">
+  <meta property="og:title" content="BULK 3D STUDIO — Impresión 3D FDM a medida en Buenos Aires">
+  <meta property="og:description" content="Convertimos archivos en objetos reales. Impresión 3D FDM profesional para empresas, diseñadores y emprendedores.">
+  <meta property="og:url" content="https://bulk3dstudio.com">
+  <meta property="og:image" content="https://bulk3dstudio.com/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BULK 3D STUDIO — Impresión 3D FDM a medida">
+  <meta name="twitter:description" content="Convertimos archivos en objetos reales. Impresión 3D FDM profesional en Buenos Aires.">
+  <meta name="twitter:image" content="https://bulk3dstudio.com/assets/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Spectral:ital,wght@0,600;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "BULK 3D STUDIO",
+    "image": "https://bulk3dstudio.com/assets/og-image.png",
+    "description": "Servicio de impresión 3D FDM profesional en Buenos Aires. Prototipos y producción en serie para empresas, diseñadores y emprendedores.",
+    "url": "https://bulk3dstudio.com",
+    "email": "hola@bulk3dstudio.com",
+    "telephone": "+549XXXXXXXXXX",
+    "priceRange": "$$",
+    "address": { "@type": "PostalAddress", "addressLocality": "Buenos Aires", "addressCountry": "AR" },
+    "sameAs": [ "https://instagram.com/bulk3dstudio" ],
+    "makesOffer": { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Impresión 3D FDM", "serviceType": "Impresión 3D por filamento (FDM)" } }
+  }
+  </script>
+</head>
+<body>
+<?php include 'partials/header.php'; ?>
+
+<div id="smooth-wrapper">
+<div id="smooth-content">
+
+<main id="main">
+
+  <!-- ===================== 1. HERO ===================== -->
+  <section class="hero" id="hero">
+    <!-- Fondo silk animado (js/silk.js). Si el canvas no inicia, queda --carbon. -->
+    <canvas class="hero__silk" id="heroCanvas" data-hero="visual" aria-hidden="true"></canvas>
+
+    <div class="hero__inner container">
+      <div class="hero__top">
+        <p class="lab lab--hero" data-hero="kicker"><span class="lab__idx">●</span> Impresión 3D — Buenos Aires</p>
+        <p class="hero__meta" data-hero="kicker">
+          FDM · Multicolor · CAD<br>
+          Empresas / Diseñadores / Emprendedores
+        </p>
+      </div>
+
+      <h1 class="hero__title" data-hero="title">
+        <span class="d-line"><span>CONVERTIMOS</span></span>
+        <span class="d-line"><span>ARCHIVOS EN</span></span>
+        <span class="d-line"><span class="serif">objetos reales</span></span>
+      </h1>
+
+      <div class="hero__bottom" data-parallax="0.16">
+        <p class="hero__lead" data-hero="lead">
+          Para empresas, diseñadores y emprendedores que necesitan resultados tangibles.
+        </p>
+        <div class="hero__actions" data-hero="cta">
+          <a href="#contacto" class="btn btn--primary btn--lg">Pedí tu presupuesto sin cargo</a>
+          <a href="#proceso" class="arrow-link arrow-link--hero">
+            Ver el proceso
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cinta de formatos (dentro del hero, sobre el silk) -->
+    <div class="marquee marquee--hero" aria-hidden="true">
+      <div class="marquee__track">
+        <span>.STL</span><span class="dot">/</span><span>.STEP</span><span class="dot">/</span><span>.OBJ</span><span class="dot">/</span><span>.3MF</span><span class="dot">/</span>
+        <span>.STL</span><span class="dot">/</span><span>.STEP</span><span class="dot">/</span><span>.OBJ</span><span class="dot">/</span><span>.3MF</span><span class="dot">/</span>
+        <span>.STL</span><span class="dot">/</span><span>.STEP</span><span class="dot">/</span><span>.OBJ</span><span class="dot">/</span><span>.3MF</span><span class="dot">/</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. SERVICIO ===================== -->
+  <section class="section container" id="servicio">
+    <p class="lab reveal"><span class="lab__idx">(01)</span> Cómo trabajamos <span class="lab__line"></span></p>
+    <div class="split">
+      <h2 class="display reveal">IMPRESIÓN 3D <em class="serif">a tu</em> MEDIDA</h2>
+      <p class="lead reveal">
+        Recibimos tus archivos y elegimos tecnología, resolución, relleno y parámetros
+        térmicos óptimos. Control dimensional y post-procesado incluido.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== 3. TECNOLOGÍA (oscuro) ===================== -->
+  <section class="section section--dark" id="tecnologia">
+    <div class="container">
+      <p class="lab reveal"><span class="lab__idx">(02)</span> Tecnología <span class="lab__line"></span></p>
+      <h2 class="display head--wide reveal">ELEGIMOS LA TECNOLOGÍA <em class="serif">óptima</em></h2>
+
+      <div class="elist">
+        <article class="erow reveal">
+          <span class="erow__idx">01</span>
+          <h3 class="erow__title">FDM<span class="erow__sub">filamento</span></h3>
+          <p class="erow__desc">PLA · PETG · ABS · ASA · TPU. Piezas funcionales y estructurales.</p>
+        </article>
+        <article class="erow reveal">
+          <span class="erow__idx">02</span>
+          <h3 class="erow__title">Multicolor<span class="erow__sub">sistema AMS</span></h3>
+          <p class="erow__desc">Hasta 4 materiales o colores en una misma pieza.</p>
+        </article>
+        <article class="erow reveal">
+          <span class="erow__idx">03</span>
+          <h3 class="erow__title">CAD<span class="erow__sub">malla óptima</span></h3>
+          <p class="erow__desc">Configuración eficiente del relleno y parámetros por pieza.</p>
+        </article>
+        <article class="erow reveal">
+          <span class="erow__idx">04</span>
+          <h3 class="erow__title">QC<span class="erow__sub">control dim.</span></h3>
+          <p class="erow__desc">Verificación dimensional en cada etapa del proceso.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. PRECISIÓN (oscuro, stats gigantes) ===================== -->
+  <section class="section section--dark" id="precision" style="padding-top:0;">
+    <div class="container">
+      <p class="lab reveal"><span class="lab__idx">(03)</span> Precisión <span class="lab__line"></span></p>
+      <h2 class="display head--wide reveal">PRECISIÓN <em class="serif">en cada</em> CAPA</h2>
+      <p class="lead reveal">Cada pieza se controla dimensionalmente, capa por capa, en todo el volumen de impresión.</p>
+
+      <div class="stats">
+        <div class="stat reveal">
+          <span class="stat__num" data-count="0.1" data-decimals="1" data-suffix="mm">0.1mm</span>
+          <span class="stat__label">Resolución</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" data-count="0.2" data-decimals="1" data-prefix="±" data-suffix="%">±0.2%</span>
+          <span class="stat__label">Tolerancia</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" data-count="100" data-decimals="0" data-suffix="%">100%</span>
+          <span class="stat__label">Control QC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5. MATERIALES ===================== -->
+  <section class="section materiales" id="materiales">
+    <div class="container">
+      <div class="materiales__head">
+        <p class="lab reveal"><span class="lab__idx">(04)</span> Materiales <span class="lab__line"></span></p>
+        <h2 class="display reveal">EL MATERIAL <em class="serif">correcto</em></h2>
+      </div>
+
+      <div class="mat-list mat-stack" data-mat-stack>
+      <article class="mat">
+        <div class="mat__media"><img src="assets/pla.png" width="600" height="375" loading="lazy" alt="Bobina de filamento PLA" class="mat__img"></div>
+        <div class="mat__body">
+          <h3 class="mat__name">PLA <span class="mat__prop">versátil</span></h3>
+          <p class="mat__text">El más fácil de imprimir y el más versátil. Ideal para prototipos, maquetas y piezas decorativas con excelente terminación.</p>
+          <div class="mat__specs">
+            <dl class="mat__spec"><dt>Temperatura</dt><dd>190–220°C</dd></dl>
+            <dl class="mat__spec"><dt>Dificultad</dt><dd>Baja</dd></dl>
+          </div>
+        </div>
+      </article>
+      <article class="mat">
+        <div class="mat__media"><img src="assets/petg.png" width="600" height="375" loading="lazy" alt="Bobina de filamento PETG" class="mat__img"></div>
+        <div class="mat__body">
+          <h3 class="mat__name">PETG <span class="mat__prop">funcional</span></h3>
+          <p class="mat__text">Tenaz y resistente a químicos y humedad. Para piezas funcionales y de uso diario, con algo de flexibilidad.</p>
+          <div class="mat__specs">
+            <dl class="mat__spec"><dt>Temperatura</dt><dd>230–250°C</dd></dl>
+            <dl class="mat__spec"><dt>Dificultad</dt><dd>Media</dd></dl>
+          </div>
+        </div>
+      </article>
+      <article class="mat">
+        <div class="mat__media"><img src="assets/abs.png" width="600" height="375" loading="lazy" alt="Bobina de filamento ABS y ASA" class="mat__img"></div>
+        <div class="mat__body">
+          <h3 class="mat__name">ABS · ASA <span class="mat__prop">industrial</span></h3>
+          <p class="mat__text">Alta temperatura y durabilidad. El ASA suma resistencia a la intemperie y a los rayos UV. Para piezas técnicas y de exterior.</p>
+          <div class="mat__specs">
+            <dl class="mat__spec"><dt>Temperatura</dt><dd>240–260°C</dd></dl>
+            <dl class="mat__spec"><dt>Dificultad</dt><dd>Alta</dd></dl>
+          </div>
+        </div>
+      </article>
+      <article class="mat">
+        <div class="mat__media"><img src="assets/tpu.png" width="600" height="375" loading="lazy" alt="Bobina de filamento flexible TPU" class="mat__img"></div>
+        <div class="mat__body">
+          <h3 class="mat__name">TPU <span class="mat__prop">flexible</span></h3>
+          <p class="mat__text">Flexible y elástico, resiste impacto y abrasión. Para juntas, fundas, protecciones y piezas que necesitan ceder.</p>
+          <div class="mat__specs">
+            <dl class="mat__spec"><dt>Temperatura</dt><dd>220–240°C</dd></dl>
+            <dl class="mat__spec"><dt>Dificultad</dt><dd>Media</dd></dl>
+          </div>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6. EQUIPAMIENTO (scroll horizontal) ===================== -->
+  <section class="section equipamiento" id="equipamiento">
+    <div class="container">
+      <p class="lab reveal"><span class="lab__idx">(05)</span> Parque de máquinas <span class="lab__line"></span></p>
+      <h2 class="display reveal">EQUIPAMIENTO <em class="serif">profesional</em></h2>
+      <p class="lead reveal">Seis impresoras Bambu Lab con tecnología CoreXY de alta velocidad y sistema multicolor AMS, para prototipo y producción en serie.</p>
+      <p class="hscroll__hint" aria-hidden="true">→ Deslizá para recorrer las 6 máquinas</p>
+    </div>
+
+    <div class="hscroll" data-hscroll>
+      <div class="hscroll__track" data-hscroll-track>
+        <article class="machine">
+          <div class="machine__media"><img src="assets/h2d.png" width="640" height="480" loading="lazy" alt="Impresora 3D Bambu Lab H2D" class="machine__img" data-mparallax></div>
+          <h3 class="machine__model">H2D</h3>
+          <span class="machine__tag">gran formato</span>
+          <p class="machine__desc">Nuestra máquina insignia. Doble nozzle para imprimir dos materiales o colores sin purga, con cámara calefaccionada para materiales técnicos.</p>
+          <dl class="machine__specs">
+            <div class="machine__spec"><dt>Volumen</dt><dd>350×320×325 mm</dd></div>
+            <div class="machine__spec"><dt>Velocidad</dt><dd>1000 mm/s</dd></div>
+            <div class="machine__spec"><dt>Extrusión</dt><dd>Doble nozzle</dd></div>
+          </dl>
+        </article>
+        <article class="machine">
+          <div class="machine__media"><img src="assets/x1c.png" width="640" height="480" loading="lazy" alt="Impresora 3D Bambu Lab X1 Carbon" class="machine__img" data-mparallax></div>
+          <h3 class="machine__model">X1 Carbon</h3>
+          <span class="machine__tag">tope de gama</span>
+          <p class="machine__desc">CoreXY cerrada con LiDAR y monitoreo por IA. Imprime materiales abrasivos y técnicos con la máxima fiabilidad y control.</p>
+          <dl class="machine__specs">
+            <div class="machine__spec"><dt>Volumen</dt><dd>256×256×256 mm</dd></div>
+            <div class="machine__spec"><dt>Velocidad</dt><dd>500 mm/s</dd></div>
+            <div class="machine__spec"><dt>Nozzle</dt><dd>Acero endurecido</dd></div>
+          </dl>
+        </article>
+        <article class="machine">
+          <div class="machine__media"><img src="assets/h2s.png" width="640" height="480" loading="lazy" alt="Impresora 3D Bambu Lab H2S" class="machine__img" data-mparallax></div>
+          <h3 class="machine__model">H2S</h3>
+          <span class="machine__tag">alto volumen</span>
+          <p class="machine__desc">Un solo nozzle optimizado para volumen y velocidad. Ideal para piezas grandes y producción en serie de un material.</p>
+          <dl class="machine__specs">
+            <div class="machine__spec"><dt>Volumen</dt><dd>340×320×340 mm</dd></div>
+            <div class="machine__spec"><dt>Velocidad</dt><dd>1000 mm/s</dd></div>
+            <div class="machine__spec"><dt>Cámara</dt><dd>Calefaccionada</dd></div>
+          </dl>
+        </article>
+        <article class="machine">
+          <div class="machine__media"><img src="assets/p1s.png" width="640" height="480" loading="lazy" alt="Impresora 3D Bambu Lab P1S" class="machine__img" data-mparallax></div>
+          <h3 class="machine__model">P1S</h3>
+          <span class="machine__tag">cerrada y veloz</span>
+          <p class="machine__desc">CoreXY cerrada con filtro de carbón. El mejor balance de velocidad, calidad y materiales como ABS o ASA.</p>
+          <dl class="machine__specs">
+            <div class="machine__spec"><dt>Volumen</dt><dd>256×256×256 mm</dd></div>
+            <div class="machine__spec"><dt>Velocidad</dt><dd>500 mm/s</dd></div>
+            <div class="machine__spec"><dt>Chasis</dt><dd>Cerrado + filtro</dd></div>
+          </dl>
+        </article>
+        <article class="machine">
+          <div class="machine__media"><img src="assets/a1.png" width="640" height="480" loading="lazy" alt="Impresora 3D Bambu Lab A1" class="machine__img" data-mparallax></div>
+          <h3 class="machine__model">A1</h3>
+          <span class="machine__tag">multicolor ágil</span>
+          <p class="machine__desc">Bed slinger de mesa grande con AMS Lite. Multicolor ágil para PLA y PETG, lista para usar y muy silenciosa.</p>
+          <dl class="machine__specs">
+            <div class="machine__spec"><dt>Volumen</dt><dd>256×256×256 mm</dd></div>
+            <div class="machine__spec"><dt>Velocidad</dt><dd>500 mm/s</dd></div>
+            <div class="machine__spec"><dt>Color</dt><dd>AMS Lite</dd></div>
+          </dl>
+        </article>
+        <article class="machine">
+          <div class="machine__media"><img src="assets/a1mini.png" width="640" height="480" loading="lazy" alt="Impresora 3D Bambu Lab A1 Mini" class="machine__img" data-mparallax></div>
+          <h3 class="machine__model">A1 Mini</h3>
+          <span class="machine__tag">compacta</span>
+          <p class="machine__desc">Compacta y veloz, con AMS Lite. Perfecta para piezas chicas, prototipos y multicolor en poco espacio.</p>
+          <dl class="machine__specs">
+            <div class="machine__spec"><dt>Volumen</dt><dd>180×180×180 mm</dd></div>
+            <div class="machine__spec"><dt>Velocidad</dt><dd>500 mm/s</dd></div>
+            <div class="machine__spec"><dt>Color</dt><dd>AMS Lite</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 7. PRODUCCIÓN ===================== -->
+  <section class="section container" id="produccion">
+    <p class="lab reveal"><span class="lab__idx">(06)</span> Producción <span class="lab__line"></span></p>
+    <h2 class="display reveal"><span class="bignum">2000</span> UNIDADES.<br><em class="serif">o solo</em> UNA.</h2>
+
+    <div class="prod-grid">
+      <article class="prod reveal"><h3 class="prod__title">Prototipo</h3><p class="prod__text">Una sola pieza para validar tu idea antes de escalar.</p></article>
+      <article class="prod reveal"><h3 class="prod__title">Producción en serie</h3><p class="prod__text">Lotes de 10 a 2000 unidades con calidad homogénea.</p></article>
+      <article class="prod reveal"><h3 class="prod__title">Mismo control de calidad</h3><p class="prod__text">De 1 a 2000 piezas, sin variación entre lotes.</p></article>
+    </div>
+
+    <div class="substats">
+      <div class="substat reveal"><span class="substat__num" data-count="500" data-decimals="0" data-suffix="+">500+</span><span class="substat__label">unidades por lote</span></div>
+      <div class="substat reveal"><span class="substat__num" data-count="72" data-decimals="0" data-suffix="hs">72hs</span><span class="substat__label">primer prototipo</span></div>
+      <div class="substat reveal"><span class="substat__num substat__num--text">Local</span><span class="substat__label">fabricación en Buenos Aires</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 8. PROCESO (oscuro) ===================== -->
+  <section class="section section--dark" id="proceso">
+    <div class="container">
+      <p class="lab reveal"><span class="lab__idx">(07)</span> Proceso <span class="lab__line"></span></p>
+      <h2 class="display head--wide reveal">UN PROCESO SIMPLE, <em class="serif">resultados precisos</em></h2>
+
+      <div class="elist">
+        <article class="erow reveal"><span class="erow__idx">01</span><h3 class="erow__title">Nos envías el archivo</h3><p class="erow__desc">STL, STEP, OBJ o 3MF. Lo recibimos y analizamos.</p></article>
+        <article class="erow reveal"><span class="erow__idx">02</span><h3 class="erow__title">Configuramos</h3><p class="erow__desc">Tecnología, material, relleno y parámetros óptimos.</p></article>
+        <article class="erow reveal"><span class="erow__idx">03</span><h3 class="erow__title">Producimos</h3><p class="erow__desc">Impresión con control dimensional pieza a pieza.</p></article>
+        <article class="erow reveal"><span class="erow__idx">04</span><h3 class="erow__title">Entregamos</h3><p class="erow__desc">Con post-procesado básico incluido y seguimiento.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 9. POR QUÉ (oscuro) ===================== -->
+  <section class="section section--dark" id="porque" style="padding-top:0;">
+    <div class="container">
+      <p class="lab reveal"><span class="lab__idx">(08)</span> Diferenciales <span class="lab__line"></span></p>
+      <h2 class="display reveal">POR QUÉ <em class="serif">elegirnos</em></h2>
+
+      <div class="why-grid">
+        <article class="why reveal"><span class="why__idx">01</span><div><h3 class="why__title">Parque 100% Bambu Lab</h3><p class="why__text">Tecnología CoreXY profesional de producción.</p></div></article>
+        <article class="why reveal"><span class="why__idx">02</span><div><h3 class="why__title">Asesoramiento técnico real</h3><p class="why__text">Te guiamos en material, acabado y parámetros.</p></div></article>
+        <article class="why reveal"><span class="why__idx">03</span><div><h3 class="why__title">Fabricación local</h3><p class="why__text">Producimos en Buenos Aires, con respuesta rápida.</p></div></article>
+        <article class="why reveal"><span class="why__idx">04</span><div><h3 class="why__title">Tus archivos, seguros</h3><p class="why__text">Confidencialidad total de tu diseño.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 10. CONTACTO (naranja) ===================== -->
+  <section class="section section--orange" id="contacto">
+    <div class="container">
+      <p class="lab reveal"><span class="lab__idx">(09)</span> Contacto <span class="lab__line"></span></p>
+      <h2 class="display reveal">PEDÍ TU PRESUPUESTO <em class="serif">sin cargo</em></h2>
+      <p class="lead reveal">De la idea al objeto físico, sin fricción.</p>
+
+      <div class="contacto__grid">
+        <div class="contacto__copy reveal">
+          <ul class="contact-list">
+            <li class="contact-item">
+              <span class="contact-item__ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              </span>
+              <span class="contact-item__txt"><span class="contact-item__k">Ubicación</span>Buenos Aires, Argentina</span>
+            </li>
+            <li class="contact-item">
+              <a class="contact-item__link" href="tel:+5491155512480">
+                <span class="contact-item__ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.5l1.6 4.2-2 1.4a11 11 0 0 0 5.3 5.3l1.4-2 4.2 1.6V18a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>
+                </span>
+                <span class="contact-item__txt"><span class="contact-item__k">Teléfono</span>+54 9 11 5551-2480</span>
+              </a>
+            </li>
+            <li class="contact-item">
+              <a class="contact-item__link" href="mailto:hola@bulk3dstudio.com">
+                <span class="contact-item__ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+                </span>
+                <span class="contact-item__txt"><span class="contact-item__k">Email</span>hola@bulk3dstudio.com</span>
+              </a>
+            </li>
+            <li class="contact-item">
+              <a class="contact-item__link" href="https://instagram.com/bulk3dstudio" target="_blank" rel="noopener">
+                <span class="contact-item__ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                </span>
+                <span class="contact-item__txt"><span class="contact-item__k">Instagram</span>@bulk3dstudio</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="contacto__direct">
+            <a href="https://wa.me/5491155512480" class="btn btn--onorange" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.8c2.17 0 4.2.85 5.74 2.38a8.06 8.06 0 0 1 2.37 5.73c0 4.47-3.64 8.11-8.12 8.11a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.2-.31a8.05 8.05 0 0 1-1.24-4.29c0-4.47 3.64-8.11 8.12-8.11zm4.68 10.27c-.06-.1-.24-.16-.5-.29-.26-.13-1.52-.75-1.76-.84-.24-.09-.41-.13-.59.13-.17.26-.67.84-.83 1.02-.15.17-.3.19-.56.06-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.27-1.51-1.42-1.77-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.59-1.42-.81-1.94-.21-.51-.43-.44-.59-.45-.15-.01-.32-.01-.5-.01-.17 0-.45.06-.68.32-.24.26-.9.88-.9 2.15 0 1.27.92 2.5 1.05 2.67.13.17 1.81 2.77 4.39 3.88.61.26 1.09.42 1.46.54.62.2 1.18.17 1.62.1.49-.07 1.52-.62 1.74-1.22.21-.6.21-1.11.15-1.22z"/></svg>
+              Escribinos por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <form class="form reveal" id="contactForm" action="contact.php" method="post" novalidate>
+          <?php
+          $sent  = isset($_GET['sent'])  ? $_GET['sent']  : null;
+          $error = isset($_GET['error']) ? $_GET['error'] : null;
+          if ($sent === '1'): ?>
+            <div class="form__alert form__alert--ok" role="status">¡Gracias! Tu mensaje fue enviado. Te respondemos a la brevedad.</div>
+          <?php elseif ($error): ?>
+            <div class="form__alert form__alert--err" role="alert"><?php echo htmlspecialchars(urldecode($error), ENT_QUOTES, 'UTF-8'); ?></div>
+          <?php endif; ?>
+
+          <div class="form__field">
+            <label for="name" class="form__label">Nombre <span class="req">*</span></label>
+            <input type="text" id="name" name="name" class="form__input" required autocomplete="name" placeholder="Tu nombre">
+            <p class="form__error" data-error-for="name" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label for="email" class="form__label">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" class="form__input" required autocomplete="email" inputmode="email" placeholder="tu@email.com">
+            <p class="form__error" data-error-for="email" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label for="message" class="form__label">Mensaje <span class="req">*</span></label>
+            <textarea id="message" name="message" class="form__input form__textarea" rows="4" required placeholder="Contanos qué necesitás imprimir, cantidad, material…"></textarea>
+            <p class="form__error" data-error-for="message" aria-live="polite"></p>
+          </div>
+          <div class="form__hp" aria-hidden="true">
+            <label for="website">No completar este campo</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn--submit btn--block btn--lg form__submit"><span class="form__submit-label">Enviar mensaje</span></button>
+          <p class="form__note">* Campos obligatorios. Tus datos no se comparten con terceros.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<?php include 'partials/footer.php'; ?>
+
+</div><!-- /#smooth-content -->
+</div><!-- /#smooth-wrapper -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js"></script>
+<!-- Fondo silk del hero (vanilla, sin dependencias). Carga antes de main.js. -->
+<script src="js/silk.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,693 @@
+/* =====================================================================
+   BULK 3D STUDIO — styles.css
+   Dirección: MINIMALISMO EXAGERADO
+   Tipografía gigante · espacio en blanco extremo · un solo acento naranja.
+   Editorial, plano, sin sombras, esquinas rectas. Mobile-first.
+   ===================================================================== */
+
+/* ----------------------------- TOKENS ----------------------------- */
+:root{
+  /* Colores de marca */
+  --naranja:    #E85D1C;
+  --naranja-hi: #F58C28;
+  --naranja-lo: #D64814;
+  --tinta:      #1A1713;
+  --papel:      #F2EEE6;
+  --crema:      #EEE8DE;
+  --carbon:     #17150F;  /* un punto más profundo para máximo contraste */
+  --slate:      #6E665C;
+  --faint:      #D8D1C5;  /* hairlines */
+  --obrown:     #60260C;
+
+  /* Tipografías */
+  --font-display: "Anton", system-ui, sans-serif;
+  --font-black:   "Archivo Black", system-ui, sans-serif;
+  --font-serif:   "Spectral", Georgia, serif;
+  --font-body:    "Space Grotesk", system-ui, -apple-system, sans-serif;
+
+  /* Espaciado — generoso para minimalismo exagerado */
+  --sp-1: 0.5rem;
+  --sp-2: 1rem;
+  --sp-3: 1.5rem;
+  --sp-4: 2.5rem;
+  --sp-5: 4rem;
+  --sp-6: 7rem;
+  --sp-7: 11rem;
+
+  /* Layout */
+  --container: 1440px;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+
+  /* Transiciones */
+  --t-fast: 200ms cubic-bezier(.22,.61,.36,1);
+  --t-med:  450ms cubic-bezier(.22,.61,.36,1);
+
+  --header-h: 80px;
+}
+
+/* ----------------------------- RESET ------------------------------ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  font-family:var(--font-body);
+  font-weight:400;
+  font-size:clamp(1rem, 1.05vw, 1.125rem);
+  line-height:1.55;
+  color:var(--tinta);
+  background:var(--papel);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip; /* clip (no hidden) para no romper position:sticky */
+}
+
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul,ol{ margin:0; padding:0; list-style:none; }
+h1,h2,h3{ margin:0; font-weight:400; }
+button{ font-family:inherit; cursor:pointer; }
+::selection{ background:var(--naranja); color:#fff; }
+
+.skip-link{
+  position:absolute; left:-999px; top:0; z-index:2000;
+  background:var(--tinta); color:var(--crema);
+  padding:.75rem 1.25rem; font-weight:600;
+}
+.skip-link:focus{ left:0; }
+
+:focus-visible{ outline:3px solid var(--naranja); outline-offset:4px; }
+
+/* ----------------------------- LAYOUT ----------------------------- */
+.container{
+  width:100%; max-width:var(--container);
+  margin-inline:auto; padding-inline:var(--gutter);
+}
+.section{
+  padding-block:clamp(4.5rem, 12vw, var(--sp-7));
+  position:relative;
+}
+.section--dark{ background:var(--carbon); color:var(--crema); }
+.section--orange{ background:var(--naranja); color:var(--obrown); }
+
+/* Regla full-bleed fina como divisor editorial */
+.rule{
+  height:1px; width:100%; background:var(--faint);
+  transform-origin:left center; border:0;
+}
+.section--dark .rule{ background:rgba(238,232,222,.22); }
+
+/* ----------------------------- LABEL / KICKER ----------------------------- */
+/* Etiqueta tipo índice editorial: (01) — SERVICIO */
+.lab{
+  display:flex; align-items:center; gap:.75rem;
+  font-family:var(--font-body); font-weight:600;
+  font-size:.78rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--slate); margin:0 0 var(--sp-4);
+}
+.section--dark .lab{ color:var(--crema); opacity:.7; }
+.section--orange .lab{ color:var(--obrown); }
+.lab__idx{ color:var(--naranja); font-variant-numeric:tabular-nums; }
+.lab__line{
+  flex:1; height:1px; max-width:120px; background:currentColor;
+  opacity:.4; transform-origin:left center;
+}
+
+/* ----------------------------- DISPLAY TYPE ----------------------------- */
+/* Titular gigante de sección */
+.display{
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(2.75rem, 11vw, 9rem);
+  line-height:.92; letter-spacing:-.02em;
+  text-transform:uppercase; color:var(--tinta);
+  margin:0;
+}
+.section--dark .display{ color:var(--crema); }
+.section--orange .display{ color:var(--obrown); }
+
+.serif{
+  font-family:var(--font-serif); font-style:italic; font-weight:600;
+  text-transform:none; color:var(--naranja); letter-spacing:0;
+}
+.section--orange .serif{ color:#fff; }
+
+.lead{
+  font-size:clamp(1.15rem, 2.2vw, 1.6rem);
+  line-height:1.45; color:var(--slate);
+  max-width:30ch; margin:var(--sp-4) 0 0;
+}
+.section--dark .lead{ color:var(--crema); opacity:.92; }
+.section--orange .lead{ color:var(--obrown); }
+
+/* ----------------------------- BOTONES ----------------------------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-family:var(--font-body); font-weight:600; font-size:1rem;
+  line-height:1; min-height:52px; padding:1rem 1.8rem;
+  border:1.5px solid var(--tinta); border-radius:0;
+  background:transparent; color:var(--tinta);
+  transition:background var(--t-fast), color var(--t-fast);
+}
+.btn:hover{ background:var(--tinta); color:var(--papel); }
+.btn--primary{ background:var(--naranja); border-color:var(--naranja); color:#fff; }
+.btn--primary:hover{ background:var(--tinta); border-color:var(--tinta); color:#fff; }
+.btn--lg{ min-height:60px; padding:1.2rem 2.4rem; font-size:1.05rem; }
+.btn--block{ width:100%; justify-content:center; }
+
+/* Link con flecha (acción secundaria minimalista) */
+.arrow-link{
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-weight:600; font-size:1.05rem; color:var(--tinta);
+  padding:.5rem 0; position:relative;
+}
+.arrow-link::after{
+  content:""; position:absolute; left:0; bottom:0; width:100%; height:2px;
+  background:var(--naranja); transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t-fast);
+}
+.arrow-link:hover::after{ transform:scaleX(1); }
+.arrow-link svg{ transition:transform var(--t-fast); }
+.arrow-link:hover svg{ transform:translateX(5px); }
+.section--dark .arrow-link{ color:var(--crema); }
+
+/* ============================ HEADER / NAV ============================ */
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:1000;
+  transition:background var(--t-med), border-color var(--t-med);
+  border-bottom:1px solid transparent;
+}
+.site-header.is-scrolled{
+  background:rgba(242,238,230,.9);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  border-bottom-color:var(--faint);
+}
+.header__inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem; height:var(--header-h);
+}
+.wordmark{
+  font-family:var(--font-body); font-weight:700;
+  font-size:1.1rem; letter-spacing:.04em;
+  display:inline-flex; white-space:nowrap;
+}
+.wordmark__bulk{ color:var(--naranja); }
+.wordmark__rest{ color:var(--tinta); }
+.wordmark__rest--cream{ color:var(--crema); }
+.wordmark--lg{ font-size:1.4rem; }
+
+.nav{ display:none; }
+.nav__list{ display:flex; gap:1.8rem; align-items:center; }
+.nav__link{
+  font-weight:500; font-size:.82rem; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--tinta);
+  position:relative; padding:.4rem 0;
+}
+.nav__link::after{
+  content:""; position:absolute; left:0; bottom:-2px; width:100%; height:2px;
+  background:var(--naranja); transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t-fast);
+}
+.nav__link:hover::after{ transform:scaleX(1); }
+.nav__cta{ display:none; }
+
+.nav-toggle{
+  display:inline-flex; flex-direction:column; gap:6px;
+  background:transparent; border:0; padding:10px;
+  min-width:44px; min-height:44px; align-items:center; justify-content:center;
+}
+.nav-toggle__bar{ width:28px; height:2px; background:var(--tinta); transition:transform var(--t-fast), opacity var(--t-fast); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2){ opacity:0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+
+.mobile-menu{
+  position:fixed; inset:var(--header-h) 0 auto 0; z-index:999;
+  background:var(--papel); border-bottom:1px solid var(--faint);
+  padding:var(--sp-3) var(--gutter) var(--sp-4);
+}
+.mobile-menu[hidden]{ display:none; }
+.mobile-menu__list{ display:flex; flex-direction:column; }
+.mobile-menu__link{
+  display:block; padding:1.1rem 0; font-family:var(--font-black);
+  font-size:1.6rem; text-transform:uppercase; color:var(--tinta);
+  border-bottom:1px solid var(--faint);
+}
+.mobile-menu__link:hover{ color:var(--naranja); }
+.mobile-menu__cta{ margin-top:var(--sp-3); width:100%; }
+
+/* ============================ HERO (fondo silk) ============================ */
+.hero{
+  position:relative;
+  isolation:isolate;                 /* contiene el mix-blend del título → canvas */
+  min-height:100vh; min-height:100svh;
+  display:flex; flex-direction:column;
+  background:var(--carbon);          /* fallback si el canvas no inicia */
+  color:var(--crema);
+  overflow:hidden;
+}
+/* Canvas silk full-bleed. Va primero en el DOM → se pinta detrás del contenido. */
+.hero__silk{
+  position:absolute; inset:0; width:100%; height:100%;
+  display:block; z-index:0; background:var(--carbon);
+}
+/* Contenido: SIN z-index ni transform propios, para no aislar el mix-blend. */
+.hero__inner{
+  position:relative; flex:1;
+  display:flex; flex-direction:column; justify-content:center;
+  padding-top:calc(var(--header-h) + clamp(2rem, 6vw, 4rem));
+  padding-bottom:clamp(1.5rem, 4vw, 3rem);
+}
+.hero__top{ display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+.lab--hero{ color:var(--crema); opacity:.85; }
+.lab--hero .lab__idx{ color:var(--naranja); opacity:1; }
+.hero__meta{
+  font-family:var(--font-body); font-weight:500;
+  font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--crema); opacity:.7; text-align:right; line-height:1.8;
+}
+.hero__title{
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(3.2rem, 16vw, 13rem);
+  line-height:.86; letter-spacing:-.03em;
+  text-transform:uppercase; margin:var(--sp-4) 0 0; color:#fff;
+}
+.hero__title .d-line{ display:block; overflow:hidden; }
+.hero__title .d-line > span{ display:block; }
+/* Líneas blancas en mix-blend-difference (invierten sobre el silk).
+   La palabra serif de énfasis queda en naranja legible (sin blend). */
+.hero__title .d-line > span:not(.serif){ mix-blend-mode:difference; color:#fff; }
+.hero__title .serif{ font-size:.82em; color:var(--naranja); mix-blend-mode:normal; }
+.hero__bottom{
+  display:flex; justify-content:space-between; align-items:flex-end;
+  gap:var(--sp-4); flex-wrap:wrap; margin-top:var(--sp-5);
+}
+.hero__lead{
+  font-size:clamp(1.1rem, 1.8vw, 1.5rem); color:var(--crema);
+  max-width:34ch; margin:0;
+}
+.hero__actions{ display:flex; flex-wrap:wrap; gap:1rem; align-items:center; }
+.arrow-link--hero{ color:var(--crema); }
+
+/* Header legible sobre el hero oscuro (hasta que aparece el fondo papel) */
+.site-header:not(.is-scrolled) .wordmark__rest{ color:var(--crema); }
+.site-header:not(.is-scrolled) .nav__link{ color:var(--crema); }
+.site-header:not(.is-scrolled) .nav-toggle__bar{ background:var(--crema); }
+
+/* ============================ MARQUEE ============================ */
+.marquee{
+  border-block:1px solid var(--faint);
+  padding:1.4rem 0; overflow:hidden; white-space:nowrap;
+}
+.marquee--dark{ border-color:rgba(238,232,222,.2); }
+/* Cinta dentro del hero: sobre el silk, en crema */
+.marquee--hero{
+  position:relative; z-index:1;
+  border-color:rgba(238,232,222,.22); background:transparent;
+}
+.marquee--hero .marquee__track{ color:var(--crema); }
+.marquee__track{
+  display:inline-flex; gap:2.5rem; align-items:center;
+  font-family:var(--font-display); font-size:clamp(1.6rem,4vw,2.6rem);
+  letter-spacing:.02em; color:var(--tinta); text-transform:uppercase;
+  animation:marquee 28s linear infinite;
+}
+.section--dark .marquee__track{ color:var(--crema); }
+.marquee__track .dot{ color:var(--naranja); }
+@keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-33.33%); } }
+
+/* ============================ SECCIÓN: cabecera editorial ============================ */
+/* Bloque: label + display grande, con mucho aire */
+.head{ max-width:18ch; }
+.head--wide{ max-width:24ch; }
+
+/* Layout de dos columnas asimétrico (título / texto) */
+.split{
+  display:grid; grid-template-columns:1fr; gap:var(--sp-4);
+  margin-top:var(--sp-5);
+}
+
+/* ============================ LISTA EDITORIAL (tecnología, proceso) ============================ */
+.elist{ margin-top:var(--sp-5); border-top:1px solid var(--faint); }
+.section--dark .elist{ border-color:rgba(238,232,222,.2); }
+.erow{
+  display:grid; grid-template-columns:auto 1fr; gap:.4rem var(--sp-3);
+  align-items:baseline;
+  padding:clamp(1.6rem,4vw,2.8rem) 0;
+  border-bottom:1px solid var(--faint);
+  transition:padding-left var(--t-med);
+}
+.section--dark .erow{ border-color:rgba(238,232,222,.2); }
+.erow:hover{ padding-left:1rem; }
+.erow__idx{
+  font-family:var(--font-body); font-weight:600; font-size:.8rem;
+  letter-spacing:.1em; color:var(--naranja); font-variant-numeric:tabular-nums;
+}
+.erow__title{
+  font-family:var(--font-black); font-weight:400;
+  font-size:clamp(1.6rem, 5vw, 3rem); line-height:1; text-transform:uppercase;
+  color:var(--tinta); grid-column:2;
+}
+.section--dark .erow__title{ color:var(--crema); }
+.erow__sub{
+  font-family:var(--font-serif); font-style:italic; font-weight:400;
+  font-size:.42em; color:var(--naranja); text-transform:none; margin-left:.5rem;
+}
+.erow__desc{
+  grid-column:2; color:var(--slate); margin:.9rem 0 0;
+  max-width:52ch; font-size:1.05rem;
+}
+.section--dark .erow__desc{ color:var(--crema); opacity:.78; }
+
+/* ============================ STATS GIGANTES ============================ */
+.stats{
+  display:grid; grid-template-columns:1fr; gap:var(--sp-5);
+  margin-top:var(--sp-6);
+}
+.stat__num{
+  display:block; font-family:var(--font-display); font-weight:400;
+  font-size:clamp(4rem, 16vw, 11rem); line-height:.85;
+  color:var(--naranja); font-variant-numeric:tabular-nums; letter-spacing:-.02em;
+}
+.section--dark .stat__num{ color:var(--naranja-hi); }
+.stat__label{
+  display:block; margin-top:var(--sp-2);
+  font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+  font-size:.82rem; color:var(--slate);
+}
+.section--dark .stat__label{ color:var(--crema); opacity:.75; }
+
+/* ============================ MATERIALES (filas editoriales grandes) ============================ */
+.mat-list{ margin-top:var(--sp-5); border-top:1px solid var(--faint); }
+.mat{
+  display:grid; grid-template-columns:1fr; gap:var(--sp-3);
+  padding:clamp(2rem,5vw,3.5rem) 0; border-bottom:1px solid var(--faint);
+  align-items:center;
+}
+.mat__media{ overflow:hidden; order:-1; }
+.mat__img{
+  width:100%; aspect-ratio:16/10; object-fit:cover;
+  filter:grayscale(10%); transition:transform var(--t-med), filter var(--t-med);
+}
+.mat:hover .mat__img{ transform:scale(1.04); filter:grayscale(0%); }
+.mat__name{
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(2.6rem, 9vw, 6rem); line-height:.9; text-transform:uppercase;
+  color:var(--tinta);
+}
+.mat__prop{ font-family:var(--font-serif); font-style:italic; color:var(--naranja); font-size:.32em; display:inline-block; margin-left:.4rem; }
+.mat__text{ color:var(--slate); max-width:46ch; margin:var(--sp-2) 0 var(--sp-3); font-size:1.05rem; }
+.mat__specs{ display:flex; gap:var(--sp-4); flex-wrap:wrap; }
+.mat__spec{ }
+.mat__spec dt{ font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--slate); margin-bottom:.2rem; }
+.mat__spec dd{ margin:0; font-family:var(--font-black); font-size:1.1rem; color:var(--tinta); }
+
+/* ============================ EQUIPAMIENTO (scroll horizontal) ============================ */
+.equipamiento{ padding-bottom:0; overflow:hidden; }
+.hscroll{ }
+.hscroll__track{
+  display:flex; gap:0;
+  padding:var(--sp-5) 0 var(--sp-6);
+}
+.machine{
+  flex:0 0 auto; width:min(86vw, 460px);
+  padding-inline:var(--gutter);
+  border-right:1px solid var(--faint);
+}
+.machine:first-child{ padding-left:var(--gutter); }
+.machine__media{ overflow:hidden; margin-bottom:var(--sp-3); }
+.machine__img{
+  width:100%; aspect-ratio:4/3; object-fit:cover;
+  filter:grayscale(12%); will-change:transform;
+}
+.machine__model{
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(2.4rem,6vw,3.6rem); line-height:.9; text-transform:uppercase;
+  color:var(--tinta);
+}
+.machine__tag{ font-family:var(--font-serif); font-style:italic; color:var(--naranja); font-size:1.3rem; margin:.3rem 0 var(--sp-2); display:block; }
+.machine__desc{ color:var(--slate); font-size:1rem; margin:0 0 var(--sp-3); }
+.machine__specs{ border-top:1px solid var(--faint); }
+.machine__spec{ display:flex; justify-content:space-between; gap:1rem; padding:.7rem 0; border-bottom:1px solid var(--faint); }
+.machine__spec dt{ color:var(--slate); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; }
+.machine__spec dd{ margin:0; font-family:var(--font-black); font-size:.92rem; text-align:right; color:var(--tinta); }
+.hscroll__hint{ font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--slate); margin-top:var(--sp-3); }
+
+/* ============================ PRODUCCIÓN ============================ */
+.bignum{ font-family:var(--font-display); color:var(--naranja); }
+.prod-grid{ display:grid; grid-template-columns:1fr; gap:var(--sp-4); margin-top:var(--sp-5); border-top:1px solid var(--faint); }
+.prod{ padding-top:var(--sp-3); border-top:2px solid var(--naranja); }
+.prod__title{ font-family:var(--font-black); font-size:1.3rem; text-transform:uppercase; margin:0 0 .5rem; }
+.prod__text{ color:var(--slate); margin:0; }
+.substats{ display:grid; grid-template-columns:1fr; gap:var(--sp-4); margin-top:var(--sp-6); }
+.substat__num{ display:block; font-family:var(--font-display); font-size:clamp(3rem,10vw,5rem); line-height:.85; color:var(--naranja); font-variant-numeric:tabular-nums; }
+.substat__num--text{ font-family:var(--font-black); font-size:clamp(2.2rem,7vw,3.5rem); color:var(--tinta); }
+.substat__label{ display:block; margin-top:var(--sp-2); color:var(--slate); }
+
+/* ============================ POR QUÉ (checks) ============================ */
+.why-grid{ display:grid; grid-template-columns:1fr; gap:0; margin-top:var(--sp-5); border-top:1px solid rgba(238,232,222,.2); }
+.why{ padding:clamp(1.6rem,4vw,2.6rem) 0; border-bottom:1px solid rgba(238,232,222,.2); display:grid; grid-template-columns:auto 1fr; gap:var(--sp-3); align-items:baseline; }
+.why__idx{ font-family:var(--font-body); font-weight:600; font-size:.8rem; color:var(--naranja); }
+.why__title{ font-family:var(--font-black); font-size:clamp(1.3rem,3.5vw,2rem); text-transform:uppercase; color:var(--crema); margin:0 0 .4rem; }
+.why__text{ color:var(--crema); opacity:.78; margin:0; max-width:48ch; }
+
+/* ============================ CONTACTO ============================ */
+.contacto__grid{ display:grid; grid-template-columns:1fr; gap:var(--sp-5); margin-top:var(--sp-5); }
+.contacto__direct{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:var(--sp-4); }
+.btn--onorange{ border-color:var(--obrown); color:var(--obrown); }
+.btn--onorange:hover{ background:var(--obrown); color:var(--naranja); }
+.contacto__meta{ display:grid; gap:.5rem; margin-top:var(--sp-4); font-size:.95rem; color:var(--obrown); }
+.contacto__meta strong{ font-weight:700; }
+
+.form{ }
+.form__field{ margin-bottom:var(--sp-3); }
+.form__label{ display:block; font-weight:600; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.5rem; color:var(--obrown); }
+.req{ color:#fff; }
+.form__input{
+  width:100%; font-family:inherit; font-size:1.05rem;
+  padding:1rem 0; min-height:52px;
+  border:0; border-bottom:2px solid var(--obrown); border-radius:0;
+  background:transparent; color:var(--obrown);
+  transition:border-color var(--t-fast);
+}
+.form__input::placeholder{ color:rgba(96,38,12,.5); }
+.form__input:focus{ outline:none; border-bottom-color:#fff; }
+.form__textarea{ resize:vertical; min-height:120px; line-height:1.5; }
+.form__input.is-invalid{ border-bottom-color:#7a1500; }
+.form__error{ margin:.4rem 0 0; font-size:.85rem; color:#5a1400; font-weight:600; min-height:1em; }
+.form__note{ font-size:.82rem; color:var(--obrown); opacity:.8; margin:.8rem 0 0; }
+.form__submit{ margin-top:var(--sp-3); }
+.form__hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.form__alert{ padding:1rem 1.2rem; margin-bottom:var(--sp-3); font-weight:600; }
+.form__alert--ok{ background:var(--tinta); color:var(--crema); }
+.form__alert--err{ background:#7a1500; color:#fff; }
+.btn--submit{ background:var(--tinta); border-color:var(--tinta); color:var(--crema); }
+.btn--submit:hover{ background:#000; color:#fff; }
+
+/* ============================ FOOTER ============================ */
+.site-footer{ background:var(--carbon); color:var(--crema); padding-top:var(--sp-6); }
+.footer__big{
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(3rem, 15vw, 12rem); line-height:.86; text-transform:uppercase;
+  color:var(--crema); margin:0 0 var(--sp-5); letter-spacing:-.02em;
+}
+.footer__big .serif{ color:var(--naranja); }
+.footer__cols{ display:grid; grid-template-columns:1fr; gap:var(--sp-4); padding-bottom:var(--sp-5); }
+.footer__title{ font-weight:600; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--crema); opacity:.6; margin:0 0 var(--sp-2); }
+.footer__list{ display:grid; gap:.6rem; }
+.footer__link{ color:var(--crema); opacity:.85; transition:opacity var(--t-fast), color var(--t-fast); }
+.footer__link:hover{ color:var(--naranja); opacity:1; }
+.footer__bottom{ display:flex; flex-direction:column; gap:.6rem; padding-block:var(--sp-3); border-top:1px solid rgba(238,232,222,.2); }
+.footer__copy, .footer__formats{ margin:0; font-size:.82rem; color:var(--crema); opacity:.6; }
+
+/* ============================ ESTADOS ANIMACIÓN ============================ */
+.js-anim .reveal{ opacity:0; transform:translateY(34px); }
+.js-anim .hero__title .d-line > span{ display:block; }
+
+/* ============================ RESPONSIVE ============================ */
+@media (min-width:640px){
+  .stats{ grid-template-columns:repeat(3,1fr); gap:var(--sp-4); }
+  .substats{ grid-template-columns:repeat(3,1fr); }
+  .footer__cols{ grid-template-columns:repeat(3,1fr); }
+  .footer__bottom{ flex-direction:row; justify-content:space-between; align-items:center; }
+}
+@media (min-width:768px){
+  .split{ grid-template-columns:1.15fr .85fr; gap:var(--sp-6); align-items:end; }
+  .mat{ grid-template-columns:.9fr 1.1fr; gap:var(--sp-5); }
+  .mat__media{ order:0; }
+  .prod-grid{ grid-template-columns:repeat(3,1fr); gap:var(--sp-5); }
+  .why-grid{ grid-template-columns:repeat(2,1fr); column-gap:var(--sp-5); }
+  .why{ }
+  .contacto__grid{ grid-template-columns:1fr 1fr; gap:var(--sp-6); }
+}
+@media (min-width:960px){
+  :root{ --header-h:88px; }
+  .nav{ display:block; }
+  .nav__cta{ display:inline-flex; }
+  .nav-toggle{ display:none; }
+  .mobile-menu{ display:none !important; }
+}
+
+/* ============================ REDUCED MOTION ============================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important; scroll-behavior:auto !important;
+  }
+  .marquee__track{ animation:none; }
+  .reveal{ opacity:1 !important; transform:none !important; }
+  .hero__title .d-line > span{ transform:none !important; }
+}
+
+/* ============================================================
+   AJUSTE FINO DE TIPOGRAFÍA — alineado al manual de marca.
+   Fuentes del manual: Anton (display/hero) · Archivo Black (destacados,
+   uso mínimo) · Spectral (acento serif/énfasis) · Space Grotesk (texto/datos).
+   Objetivo: look más FINO → menos peso "black", más Anton y Space Grotesk
+   Medium, más tracking, hairlines y pesos livianos. (Bloque de override.)
+   ============================================================ */
+
+/* Títulos de listas (Tecnología / Proceso): Archivo Black → Anton (más fino) */
+.erow__title{ font-family:var(--font-display); font-weight:400; letter-spacing:.01em; }
+.erow__sub{ font-weight:400; }
+
+/* Subtítulos de bloque: Archivo Black → Space Grotesk Medium con tracking */
+.prod__title,
+.why__title{ font-family:var(--font-body); font-weight:500; letter-spacing:.03em; }
+
+/* Datos / specs: Archivo Black → Space Grotesk SemiBold (más liviano y legible) */
+.spec dd,
+.machine__spec dd,
+.mat__spec dd{ font-family:var(--font-body); font-weight:600; letter-spacing:.005em; }
+
+/* "Local" en sub-stats: acento serif fino en vez de Archivo Black */
+.substat__num--text{ font-family:var(--font-serif); font-style:italic; font-weight:400; }
+
+/* Etiquetas, nav, botones y labels: pesos más livianos + más aire */
+.lab{ font-weight:500; }
+.btn{ font-weight:500; }
+.nav__link{ font-weight:400; }
+.form__label{ font-weight:500; }
+.footer__title{ font-weight:500; }
+.erow__idx,
+.why__idx{ font-weight:500; }
+.hscroll__hint{ font-weight:500; }
+.stat__label,
+.substat__label{ font-weight:500; }
+.spec dt,
+.machine__spec dt,
+.mat__spec dt{ font-weight:400; }
+
+/* Texto de lectura: un punto más fino y aireado */
+.lead{ font-weight:400; letter-spacing:.005em; }
+.erow__desc,
+.mat__text,
+.machine__desc,
+.prod__text,
+.why__text{ letter-spacing:.004em; }
+
+/* Wordmark un poco menos pesado para acompañar */
+.wordmark{ font-weight:600; }
+
+/* ============================================================
+   AJUSTES PEDIDOS (tamaños, apilado de materiales, contacto)
+   ============================================================ */
+
+/* Palabras de énfasis (serif naranja) en titulares de sección: más grandes */
+.display .serif{ font-size:1.6em; line-height:.82; display:inline-block; vertical-align:baseline; }
+
+/* Tecnología + Proceso: números (índices) más grandes y editoriales */
+.erow__idx{
+  font-family:var(--font-serif); font-style:italic; font-weight:600;
+  font-size:clamp(1.7rem, 4.5vw, 3rem); line-height:1; align-self:start;
+}
+/* Proceso/Tecnología: texto un poco más grande */
+.erow__desc{ font-size:clamp(1.05rem, 1.5vw, 1.25rem); }
+
+/* Por qué elegirnos: números más grandes + texto un poco más grande */
+.why__idx{
+  font-family:var(--font-serif); font-style:italic; font-weight:600;
+  font-size:clamp(1.6rem, 4vw, 2.6rem); line-height:1;
+}
+.why__text{ font-size:clamp(1.05rem, 1.4vw, 1.2rem); }
+.why__title{ font-size:clamp(1.4rem, 3.5vw, 2.1rem); }
+
+/* Producción: sacar la línea gris fina superior; dejar las naranjas (.prod) */
+#produccion .prod-grid{ border-top:0; }
+/* "Local": como los números naranjas de al lado; el label como los otros */
+.substat__num--text{ font-family:var(--font-display); font-style:normal; font-weight:400; color:var(--naranja); }
+
+/* ---------- MATERIALES: apilado (stacking) ---------- */
+.materiales__head{ margin-bottom:var(--sp-4); }
+.mat-stack{ position:relative; }
+/* Estado activado por JS (≥768px). La altura del stack la fija main.js. */
+.mat-stack.is-stacking{ overflow:hidden; }
+.mat-stack.is-stacking .mat{
+  position:absolute; inset:0; margin:0; padding:var(--sp-4) 0;
+  background:var(--papel); border-top:1px solid var(--faint);
+  display:grid; grid-template-columns:.9fr 1.1fr; gap:var(--sp-5);
+  align-content:center; align-items:center; will-change:transform;
+}
+.mat-stack.is-stacking .mat__media{ order:0; }
+.mat-stack.is-stacking .mat__img{ aspect-ratio:16/10; max-height:46vh; object-fit:cover; }
+
+/* ---------- CONTACTO: bloque de datos (rediseño) ---------- */
+.contact-list{
+  margin:var(--sp-4) 0; border-top:1px solid rgba(96,38,12,.22);
+}
+.contact-item{
+  display:flex; align-items:center; gap:1rem;
+  min-height:60px; font-weight:500; font-size:1.05rem;
+  color:var(--obrown); border-bottom:1px solid rgba(96,38,12,.22);
+}
+.contact-item__link{
+  display:flex; align-items:center; gap:1rem; flex:1; min-height:60px;
+  color:var(--obrown); transition:padding-left var(--t-fast);
+}
+.contact-item__link:hover{ padding-left:.4rem; }
+.contact-item__ic{ width:26px; height:26px; flex:none; color:var(--obrown); }
+.contact-item__ic svg{ width:100%; height:100%; display:block; }
+.contact-item__txt{ display:flex; flex-direction:column; line-height:1.25; }
+.contact-item__k{
+  font-family:var(--font-body); font-weight:500; font-size:.68rem;
+  letter-spacing:.16em; text-transform:uppercase; opacity:.72; margin-bottom:.15rem;
+}
+.contacto__direct{ margin-top:var(--sp-3); }
+
+/* Materiales: padding ajustado para el apilado pineado */
+#materiales{ padding-block:clamp(3rem,7vw,6rem) 0; }
+
+/* Materiales apilado v2: la sección mide exactamente el viewport (flexbox),
+   título arriba y stack flexible. Evita saltos y que Equipamiento se asome. */
+#materiales.is-stacking-on{
+  height:100svh; min-height:100svh; padding-block:0;
+  display:flex; flex-direction:column; overflow:hidden;
+}
+#materiales.is-stacking-on > .container{
+  display:flex; flex-direction:column; height:100%; min-height:0;
+}
+#materiales.is-stacking-on .materiales__head{
+  padding-top:calc(var(--header-h) + 1.25rem); margin-bottom:1.1rem;
+}
+.mat-stack.is-stacking{ flex:1 1 auto; min-height:0; height:auto; position:relative; overflow:hidden; }
+
+/* ============================================================
+   MATERIALES: apilado con position: sticky (sin GSAP, sin pin).
+   Cada material se "clava" arriba y el siguiente lo cubre al scrollear.
+   Al terminar, Equipamiento (único pin de la página) se lleva todo.
+   (Requiere que ningún ancestro tenga overflow:hidden → body usa clip.)
+   ============================================================ */
+@media (min-width:768px){
+  .materiales .mat-stack{ position:relative; overflow:visible; }
+  .materiales .mat-stack .mat{
+    position:sticky; top:var(--header-h);
+    min-height:calc(100svh - var(--header-h));
+    margin:0; padding-block:var(--sp-4);
+    background:var(--papel);
+    border-top:1px solid var(--faint);
+    display:grid; grid-template-columns:.9fr 1.1fr; gap:var(--sp-5);
+    align-items:center; align-content:center;
+  }
+  .materiales .mat-stack .mat__media{ order:0; }
+  .materiales .mat-stack .mat__img{ aspect-ratio:16/10; max-height:52vh; object-fit:cover; }
+}
