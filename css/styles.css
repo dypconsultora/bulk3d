@@ -928,3 +928,30 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 #produccion .display{ font-size:clamp(3.8rem, 8.4vw, 7rem); line-height:1.0; }
 /* "Local" en mayúscula */
 .substat__num--text{ text-transform:uppercase; }
+
+/* ============================================================
+   NAV: píldora más ancha y SIEMPRE flotante (sin barra al scrollear)
+   ============================================================ */
+.header__inner{ max-width:1240px; }
+.nav__list{ gap:1.4rem; }
+.site-header.is-scrolled{
+  padding:14px clamp(14px,4vw,40px) 0;   /* mismo que arriba: no se pega */
+  background:transparent; border-bottom:0;
+}
+.site-header.is-scrolled .header__inner{
+  max-width:1240px; background:var(--glass);
+  border:1px solid var(--glass-border); border-radius:999px;
+  box-shadow:0 10px 34px rgba(26,23,19,.12);
+}
+
+/* ============================================================
+   DEGRADÉS QUE CONECTAN SECCIONES
+   Tecnología → Precisión (bloque oscuro) ; Proceso → Por qué → Contacto
+   (el marrón se va calentando hasta el naranja del contacto)
+   ============================================================ */
+#tecnologia{ background:linear-gradient(180deg, #221810 0%, var(--carbon) 100%); }
+#precision{  background:linear-gradient(180deg, var(--carbon) 0%, #150f09 100%); }
+
+#proceso{ background:linear-gradient(180deg, var(--carbon) 0%, #2b1709 100%); }
+#porque{  background:linear-gradient(180deg, #2b1709 0%, #5c2810 100%); }
+#contacto{ background:linear-gradient(180deg, #5c2810 0%, var(--naranja-lo) 24%, var(--naranja) 70%, var(--naranja-hi) 100%); }
