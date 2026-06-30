@@ -955,3 +955,23 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 #proceso{ background:linear-gradient(180deg, var(--carbon) 0%, #2b1709 100%); }
 #porque{  background:linear-gradient(180deg, #2b1709 0%, #5c2810 100%); }
 #contacto{ background:linear-gradient(180deg, #5c2810 0%, var(--naranja-lo) 24%, var(--naranja) 70%, var(--naranja-hi) 100%); }
+
+/* ============================================================
+   NAV: la píldora SE ESTIRA al scrollear, con el MISMO glass transparente
+   (sin barra de fondo extra; el contenido queda centrado)
+   ============================================================ */
+.header__inner{
+  transition:max-width var(--t-med), border-radius var(--t-med), background var(--t-med),
+             box-shadow var(--t-med), border-color var(--t-med), padding var(--t-med);
+}
+.site-header.is-scrolled{ padding:0; background:transparent; border-bottom:0; }
+.site-header.is-scrolled .header__inner{
+  max-width:100%;
+  border-radius:0;
+  background:var(--glass);                 /* mismo glass translúcido */
+  border-color:transparent;
+  border-bottom:1px solid var(--glass-border);
+  box-shadow:none;
+  /* el contenido sigue centrado (no se pega a los bordes) */
+  padding-inline:max(1.75rem, calc((100% - 1240px) / 2));
+}
