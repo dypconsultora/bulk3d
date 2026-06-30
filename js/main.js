@@ -220,9 +220,11 @@
       );
     }
 
-    // Bajada + CTAs
-    tl.from('[data-hero="lead"]', { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
-    tl.from('[data-hero="cta"]', { y: 20, opacity: 0, duration: 0.6 }, "-=0.35");
+    // Bajada + CTAs (fromTo + immediateRender:false → si no corre, quedan visibles)
+    tl.fromTo('[data-hero="lead"]',
+      { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.6, immediateRender: false }, "-=0.45");
+    tl.fromTo('[data-hero="cta"]',
+      { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.6, immediateRender: false }, "-=0.35");
 
     // Limpieza: revertir SplitText y matar la timeline al recalcular matchMedia
     return () => {

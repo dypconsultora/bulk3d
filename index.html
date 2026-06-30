@@ -102,37 +102,37 @@
 
   <!-- ===================== 1. HERO ===================== -->
   <section class="hero" id="hero">
-    <!-- Fondo silk animado (js/silk.js). Si el canvas no inicia, queda --carbon. -->
-    <canvas class="hero__silk" id="heroCanvas" data-hero="visual" aria-hidden="true"></canvas>
+    <!-- Imagen de fondo a sangre completa + overlay para legibilidad -->
+    <div class="hero__bg" data-hero="visual">
+      <img src="assets/img/hero/hero.png" width="1696" height="624" fetchpriority="high"
+           alt="Estudio de impresión 3D de BULK con impresoras Bambu Lab y vista a la ciudad"
+           class="hero__bgimg" data-parallax="0.14">
+      <span class="hero__overlay" aria-hidden="true"></span>
+    </div>
 
     <div class="hero__inner container">
-      <div class="hero__top">
-        <p class="lab lab--hero" data-hero="kicker"><span class="lab__idx">●</span> Impresión 3D — Buenos Aires</p>
-        <p class="hero__meta" data-hero="kicker">
-          FDM · Multicolor · CAD<br>
-          Empresas / Diseñadores / Emprendedores
-        </p>
-      </div>
+      <p class="lab lab--hero" data-hero="kicker"><span class="lab__rule"></span> Impresión 3D — Buenos Aires</p>
 
       <h1 class="hero__title" data-hero="title">
-        <span class="d-line"><span>CONVERTIMOS</span></span>
-        <span class="d-line"><span>ARCHIVOS EN</span></span>
-        <span class="d-line"><span class="serif">objetos reales</span></span>
+        <span class="d-line"><span>Convertimos archivos</span></span>
+        <span class="d-line"><span>en <em class="serif">objetos&nbsp;reales</em></span></span>
       </h1>
 
-      <div class="hero__bottom" data-parallax="0.16">
-        <p class="hero__lead" data-hero="lead">
-          Para empresas, diseñadores y emprendedores que necesitan resultados tangibles.
-        </p>
-        <div class="hero__actions" data-hero="cta">
-          <a href="#contacto" class="btn btn--primary btn--lg">Pedí tu presupuesto sin cargo</a>
-          <a href="#proceso" class="arrow-link arrow-link--hero">
-            Ver el proceso
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
+      <p class="hero__lead" data-hero="lead">
+        Para empresas, diseñadores y emprendedores que necesitan resultados tangibles.
+        Prototipos y producción en serie con control dimensional.
+      </p>
+
+      <div class="hero__actions" data-hero="cta">
+        <a href="#contacto" class="btn btn--primary btn--lg">Pedí tu presupuesto</a>
+        <a href="#proceso" class="btn btn--glass btn--lg">Ver el proceso</a>
       </div>
     </div>
+
+    <a href="#servicio" class="hero__scroll" aria-label="Bajar a la siguiente sección">
+      <span class="hero__scroll-txt">Scroll</span>
+      <span class="hero__scroll-line"><span></span></span>
+    </a>
   </section>
 
   <!-- ===================== 2. SERVICIO ===================== -->
@@ -522,8 +522,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js"></script>
-<!-- Fondo silk del hero (vanilla, sin dependencias). Carga antes de main.js. -->
-<script src="js/silk.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

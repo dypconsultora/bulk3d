@@ -253,59 +253,69 @@ button{ font-family:inherit; cursor:pointer; }
 .mobile-menu__link:hover{ color:var(--naranja); }
 .mobile-menu__cta{ margin-top:var(--sp-3); width:100%; }
 
-/* ============================ HERO (fondo silk) ============================ */
+/* ============================ HERO (imagen de fondo) ============================ */
 .hero{
   position:relative;
-  isolation:isolate;                 /* contiene el mix-blend del título → canvas */
-  min-height:100vh; min-height:100svh;
-  display:flex; flex-direction:column;
-  background:var(--carbon);          /* fallback si el canvas no inicia */
+  min-height:100svh;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  background:var(--carbon);
   color:var(--crema);
   overflow:hidden;
 }
-/* Canvas silk full-bleed. Va primero en el DOM → se pinta detrás del contenido. */
-.hero__silk{
-  position:absolute; inset:0; width:100%; height:100%;
-  display:block; z-index:0; background:var(--carbon);
+.hero__bg{ position:absolute; inset:0; z-index:0; overflow:hidden; }
+.hero__bgimg{
+  position:absolute; inset:0; width:100%; height:118%;  /* extra alto para el parallax */
+  object-fit:cover; object-position:center 40%; will-change:transform;
 }
-/* Contenido: SIN z-index ni transform propios, para no aislar el mix-blend. */
+.hero__overlay{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(23,21,15,.55) 0%, rgba(23,21,15,.12) 34%, rgba(23,21,15,.78) 100%),
+    linear-gradient(90deg, rgba(23,21,15,.62) 0%, rgba(23,21,15,0) 58%);
+}
 .hero__inner{
-  position:relative; flex:1;
-  display:flex; flex-direction:column; justify-content:center;
-  padding-top:calc(var(--header-h) + clamp(2rem, 6vw, 4rem));
-  padding-bottom:clamp(1.5rem, 4vw, 3rem);
+  position:relative; z-index:1; width:100%;
+  max-width:var(--container); margin-inline:auto; padding-inline:var(--gutter);
+  padding-top:calc(var(--header-h) + 2rem);
+  padding-bottom:clamp(4rem, 11vh, 8rem);
 }
-.hero__top{ display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
-.lab--hero{ color:var(--crema); opacity:.85; }
-.lab--hero .lab__idx{ color:var(--naranja); opacity:1; }
-.hero__meta{
-  font-family:var(--font-body); font-weight:500;
-  font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
-  color:var(--crema); opacity:.7; text-align:right; line-height:1.8;
-}
+.lab--hero{ color:var(--crema); opacity:.92; margin:0 0 var(--sp-3); }
+.lab--hero .lab__rule{ display:inline-block; width:42px; height:1px; background:var(--naranja); }
 .hero__title{
-  font-family:var(--font-display); font-weight:400;
-  font-size:clamp(2.6rem, 12vw, 10rem);
-  line-height:.96; letter-spacing:-.03em;
-  text-transform:uppercase; margin:var(--sp-4) 0 0; color:#fff;
+  font-family:var(--font-serif); font-weight:400; font-style:normal;
+  font-size:clamp(2.3rem, 6.2vw, 5.4rem);
+  line-height:1.04; letter-spacing:-.01em; text-transform:none;
+  color:var(--crema); margin:0; max-width:17ch;
+  text-shadow:0 1px 30px rgba(0,0,0,.25);
 }
-/* padding-block da aire para que la máscara no corte colas/ascendentes */
-.hero__title .d-line{ display:block; overflow:hidden; padding-block:.06em .16em; }
+.hero__title .d-line{ display:block; overflow:hidden; padding-block:.02em .12em; }
 .hero__title .d-line > span{ display:block; }
-/* Líneas blancas en mix-blend-difference (invierten sobre el silk).
-   La palabra serif de énfasis queda en naranja legible (sin blend). */
-.hero__title .d-line > span:not(.serif){ mix-blend-mode:difference; color:#fff; }
-.hero__title .serif{ font-size:.82em; color:var(--naranja); mix-blend-mode:normal; }
-.hero__bottom{
-  display:flex; justify-content:space-between; align-items:flex-end;
-  gap:var(--sp-4); flex-wrap:wrap; margin-top:var(--sp-5);
-}
+.hero__title .serif{ font-style:italic; color:var(--naranja-hi); font-size:1em; }
 .hero__lead{
-  font-size:clamp(1.1rem, 1.8vw, 1.5rem); color:var(--crema);
-  max-width:34ch; margin:0;
+  font-family:var(--font-body); font-weight:400;
+  font-size:clamp(1.02rem, 1.4vw, 1.18rem); line-height:1.6;
+  color:var(--crema); opacity:.88; max-width:46ch; margin:var(--sp-3) 0 var(--sp-4);
 }
 .hero__actions{ display:flex; flex-wrap:wrap; gap:1rem; align-items:center; }
-.arrow-link--hero{ color:var(--crema); }
+
+/* botón glass (sobre la imagen del hero) */
+.btn--glass{
+  background:rgba(238,232,222,.08); color:var(--crema);
+  border:1px solid rgba(238,232,222,.5);
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+}
+.btn--glass:hover{ background:var(--crema); color:var(--tinta); border-color:var(--crema); }
+
+/* indicador de scroll */
+.hero__scroll{
+  position:absolute; left:50%; bottom:1.3rem; transform:translateX(-50%); z-index:1;
+  display:flex; flex-direction:column; align-items:center; gap:.55rem; color:var(--crema);
+  font-family:var(--font-body); font-size:.62rem; letter-spacing:.3em; text-transform:uppercase;
+}
+.hero__scroll-txt{ opacity:.72; }
+.hero__scroll-line{ position:relative; width:1px; height:52px; background:rgba(238,232,222,.3); overflow:hidden; }
+.hero__scroll-line > span{ position:absolute; left:0; top:0; width:100%; height:42%; background:var(--naranja); animation:scrolldrop 2.1s cubic-bezier(.7,0,.3,1) infinite; }
+@keyframes scrolldrop{ 0%{ transform:translateY(-110%);} 60%,100%{ transform:translateY(360%);} }
 
 /* La píldora es glass claro en ambos estados → texto oscuro siempre (legible). */
 
@@ -706,3 +716,48 @@ button{ font-family:inherit; cursor:pointer; }
   .materiales .mat-stack .mat__media{ order:0; }
   .materiales .mat-stack .mat__img{ aspect-ratio:16/10; max-height:52vh; object-fit:cover; }
 }
+
+/* ============================================================
+   REDISEÑO FINO (editorial) — títulos serif Spectral, más chicos.
+   Lleva los titulares pesados (Anton/Archivo Black) a Spectral fino.
+   ============================================================ */
+.display{
+  font-family:var(--font-serif); font-weight:400; font-style:normal;
+  font-size:clamp(1.9rem, 4.2vw, 3.5rem);
+  line-height:1.08; letter-spacing:.004em;
+}
+.display .serif{ font-size:1em; font-weight:400; }   /* énfasis itálico, mismo cuerpo */
+
+/* Listas (Tecnología / Proceso): título serif fino */
+.erow__title{
+  font-family:var(--font-serif); font-weight:500; letter-spacing:0;
+  font-size:clamp(1.35rem, 3vw, 2.1rem); text-transform:none; line-height:1.1;
+}
+.erow__sub{ font-size:.5em; }
+.erow__idx{ font-size:clamp(1.2rem, 3vw, 1.9rem); }
+
+/* Materiales y Equipamiento: nombres en serif fino */
+.mat__name{
+  font-family:var(--font-serif); font-weight:500; text-transform:none;
+  font-size:clamp(2rem, 5vw, 3.4rem); line-height:1.05;
+}
+.machine__model{
+  font-family:var(--font-serif); font-weight:500; text-transform:none;
+  font-size:clamp(1.7rem, 4vw, 2.4rem); line-height:1.05;
+}
+
+/* Números grandes: Spectral liviano (elegante) en vez de Anton */
+.stat__num{
+  font-family:var(--font-serif); font-weight:300;
+  font-size:clamp(2.8rem, 9vw, 5.5rem); letter-spacing:-.01em;
+}
+.substat__num{
+  font-family:var(--font-serif); font-weight:300;
+  font-size:clamp(2.4rem, 7vw, 3.6rem);
+}
+.substat__num--text{ font-family:var(--font-serif); font-weight:400; font-style:italic; }
+.bignum{ font-family:var(--font-serif); font-weight:400; }
+
+/* Más aire / hairlines más finas para sensación premium */
+.section{ padding-block:clamp(4rem, 10vw, 9rem); }
+.lead{ font-weight:400; }
