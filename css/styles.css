@@ -975,3 +975,8 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
   /* el contenido sigue centrado (no se pega a los bordes) */
   padding-inline:max(1.75rem, calc((100% - 1240px) / 2));
 }
+
+/* Quitar degradé de Proceso y Contacto (tono plano). Por qué también plano
+   para no dejar un degradé suelto entre dos secciones planas. */
+#proceso, #porque{ background:var(--carbon); }
+#contacto{ background:var(--naranja); }
