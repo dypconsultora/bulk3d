@@ -923,3 +923,8 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
   .hero__inner{ padding-bottom:clamp(3rem,9vh,5rem); }
   .hero__title{ font-size:clamp(2.1rem,9vw,3rem); }
 }
+
+/* Producción: título "2000 UNIDADES. o solo UNA." al doble */
+#produccion .display{ font-size:clamp(3.8rem, 8.4vw, 7rem); line-height:1.0; }
+/* "Local" en mayúscula */
+.substat__num--text{ text-transform:uppercase; }
