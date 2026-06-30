@@ -770,3 +770,65 @@ button{ font-family:inherit; cursor:pointer; }
   .reveal{ opacity:1 !important; transform:none !important; }
   .hero__scroll{ display:none; }
 }
+
+/* ============================================================
+   TEMA DÍA / NOCHE  +  TOGGLE  +  TARJETAS DE CONTACTO
+   ============================================================ */
+:root{
+  --glass: rgba(242,238,230,.62);
+  --glass-2: rgba(242,238,230,.72);
+  --glass-border: rgba(26,23,19,.08);
+}
+[data-theme="dark"]{
+  --papel:#100D08;        /* fondo de página (oscuro) */
+  --tinta:#EFE7DC;        /* texto principal (claro) */
+  --slate:#A79E91;        /* secundario */
+  --faint:#332E27;        /* hairlines */
+  --carbon:#211D17;       /* secciones "oscuras" un toque más claras que el fondo */
+  --crema:#EFE8DD;
+  --glass: rgba(22,19,14,.55);
+  --glass-2: rgba(22,19,14,.75);
+  --glass-border: rgba(239,231,220,.12);
+}
+/* Header píldora usa tokens glass (cambian con el tema) */
+.header__inner{ background:var(--glass); border-color:var(--glass-border); }
+.site-header.is-scrolled .header__inner{ background:var(--glass-2); }
+/* Transición suave al cambiar de tema */
+body, .section, .section--dark, .header__inner, .mat-stack.is-stacking .mat,
+.machine, .erow, .form__input{ transition:background-color .4s ease, color .4s ease, border-color .4s ease; }
+
+/* ---- Toggle día/noche ---- */
+.theme-toggle{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:42px; height:42px; min-width:42px; flex:none; border-radius:50%;
+  background:transparent; border:1px solid var(--faint); color:var(--tinta); cursor:pointer;
+  transition:background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+}
+.theme-toggle:hover{ border-color:var(--naranja); color:var(--naranja); }
+.theme-toggle:focus-visible{ outline:3px solid var(--naranja); outline-offset:3px; }
+.theme-toggle__ic{ width:20px; height:20px; }
+.theme-toggle__sun{ display:none; }
+.theme-toggle__moon{ display:block; }
+[data-theme="dark"] .theme-toggle__sun{ display:block; }
+[data-theme="dark"] .theme-toggle__moon{ display:none; }
+
+/* ---- Tarjetas de contacto (rectángulos con hover, blanco sobre naranja) ---- */
+.ccards{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.ccard{
+  position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:.55rem;
+  padding:1.5rem 1.4rem; min-height:138px;
+  border:1px solid rgba(255,255,255,.55); border-radius:0;
+  color:#fff; background:rgba(255,255,255,.04);
+  transition:background var(--t-fast), color var(--t-fast), transform var(--t-fast), border-color var(--t-fast);
+}
+a.ccard:hover{ background:#fff; color:var(--obrown); border-color:#fff; transform:translateY(-4px); }
+.ccard__ic{ width:26px; height:26px; }
+.ccard__ic svg{ width:100%; height:100%; display:block; }
+.ccard__k{ font-family:var(--font-body); font-weight:500; font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; opacity:.8; }
+.ccard__v{ font-family:var(--font-body); font-weight:500; font-size:1.05rem; line-height:1.3; word-break:break-word; }
+.ccard__arrow{ position:absolute; top:1.05rem; right:1.15rem; font-size:1rem; opacity:.65; transition:transform var(--t-fast), opacity var(--t-fast); }
+a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
+.ccard--wide{ flex-direction:row; align-items:center; gap:.85rem; min-height:62px; margin-top:1rem; padding:1.1rem 1.4rem; }
+.ccard--wide .ccard__ic{ width:22px; height:22px; }
+.ccard--wide .ccard__v{ font-weight:600; }
+@media (max-width:520px){ .ccards{ grid-template-columns:1fr; } }

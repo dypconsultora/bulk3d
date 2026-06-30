@@ -45,6 +45,34 @@
   }
 
   /* ------------------------------------------------------------------
+     0.4 Selector día / noche (independiente de GSAP). El tema inicial ya
+     lo aplica el script inline del <head> (anti-parpadeo).
+  ------------------------------------------------------------------ */
+  const themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    const root = document.documentElement;
+    const sync = () => {
+      const dark = root.getAttribute("data-theme") === "dark";
+      themeToggle.setAttribute("aria-pressed", String(dark));
+      themeToggle.setAttribute(
+        "aria-label",
+        dark ? "Cambiar a modo día" : "Cambiar a modo noche"
+      );
+    };
+    sync();
+    themeToggle.addEventListener("click", () => {
+      const dark = root.getAttribute("data-theme") === "dark";
+      if (dark) root.removeAttribute("data-theme");
+      else root.setAttribute("data-theme", "dark");
+      try {
+        localStorage.setItem("bulk-theme", dark ? "light" : "dark");
+      } catch (e) {}
+      sync();
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    });
+  }
+
+  /* ------------------------------------------------------------------
      0.5 Fondo SILK del hero (independiente de GSAP).
      Funciona aunque GSAP no cargue. Si el canvas no inicia → fallback CSS
      (el hero queda con su fondo sólido --carbon).
@@ -367,14 +395,15 @@
 
     // Distancia a desplazar = ancho total del track - viewport
     const getScrollAmount = () => track.scrollWidth - window.innerWidth;
+    const MOVE_FACTOR = 1.6;                 // más recorrido = movimiento más lento
+    const getHold = () => window.innerHeight * 1.4; // pausa al final (se ve la última)
 
-    const tween = gsap.to(track, {
-      x: () => -getScrollAmount(),
-      ease: "none", // OBLIGATORIO para que scroll y posición coincidan
+    // Timeline pineada: mueve el track y al final HOLD (queda quieto un momento)
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: wrap,
         start: "top top",
-        end: () => "+=" + getScrollAmount(),
+        end: () => "+=" + (getScrollAmount() * MOVE_FACTOR + getHold()),
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,
@@ -382,8 +411,15 @@
         refreshPriority: 2, // refresca después de Materiales (más abajo en la página)
       },
     });
+    // duración en "px" → mapeo lineal con el scroll
+    tl.to(track, {
+      x: () => -getScrollAmount(),
+      ease: "none",                          // OBLIGATORIO para que scroll y posición coincidan
+      duration: getScrollAmount() * MOVE_FACTOR,
+    });
+    tl.to({}, { duration: getHold() });      // pausa: la última impresora queda visible
 
-    return () => tween.kill();
+    return () => tl.kill();
   });
 
   /* En mobile el equipamiento es scroll horizontal nativo (overflow-x).
