@@ -428,11 +428,16 @@ button{ font-family:inherit; cursor:pointer; }
 .mat__spec dd{ margin:0; font-family:var(--font-black); font-size:1.1rem; color:var(--tinta); }
 
 /* ============================ EQUIPAMIENTO (scroll horizontal) ============================ */
-.equipamiento{ padding-bottom:0; overflow:hidden; }
-.hscroll{ }
+.equipamiento{ padding-bottom:0; }
+/* El panel pineado ocupa todo el viewport y es OPACO → cubre la sección de
+   atrás (Materiales) durante el pin. overflow:hidden acá clipa el track horizontal. */
+.hscroll{
+  position:relative; min-height:100svh;
+  display:flex; align-items:center;
+  overflow:hidden; background:var(--papel);
+}
 .hscroll__track{
-  display:flex; gap:0;
-  padding:var(--sp-5) 0 var(--sp-6);
+  display:flex; gap:0; width:max-content;
 }
 .machine{
   flex:0 0 auto; width:min(86vw, 460px);
