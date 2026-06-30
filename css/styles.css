@@ -761,3 +761,12 @@ button{ font-family:inherit; cursor:pointer; }
 /* Más aire / hairlines más finas para sensación premium */
 .section{ padding-block:clamp(4rem, 10vw, 9rem); }
 .lead{ font-weight:400; }
+
+/* Solo para captura/impresión de revisión (no afecta la pantalla) */
+@media print{
+  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .site-header{ position:static; }
+  .hero{ min-height:70vh; }
+  .reveal{ opacity:1 !important; transform:none !important; }
+  .hero__scroll{ display:none; }
+}
