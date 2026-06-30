@@ -837,3 +837,44 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 .ccard--wide .ccard__ic{ width:22px; height:22px; }
 .ccard--wide .ccard__v{ font-weight:600; }
 @media (max-width:520px){ .ccards{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   NAV CTA (WhatsApp) + nav más grande + CONTACTO todo en blanco
+   ============================================================ */
+/* Botón fino con degradé naranja y texto blanco, apunta a WhatsApp */
+.nav-cta{
+  display:inline-flex; align-items:center; white-space:nowrap; flex:none;
+  padding:.62rem 1.2rem; border-radius:999px; border:0;
+  font-family:var(--font-body); font-weight:500; font-size:.88rem; letter-spacing:.01em;
+  color:#fff; background:linear-gradient(135deg, var(--naranja-hi), var(--naranja-lo));
+  box-shadow:0 4px 14px rgba(232,93,28,.32);
+  transition:filter var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.nav-cta:hover{ filter:brightness(1.07); transform:translateY(-1px); box-shadow:0 6px 18px rgba(232,93,28,.42); }
+.nav-cta:focus-visible{ outline:3px solid var(--naranja); outline-offset:3px; }
+@media (max-width:959px){ .nav-cta{ display:none; } }  /* en mobile el pill queda compacto */
+
+/* Nav un poco más grande */
+.nav__link{ font-size:.92rem; }
+.wordmark{ font-size:1.18rem; }
+
+/* ---- CONTACTO: todo el texto en blanco (sobre el naranja) ---- */
+#contacto .lab,
+#contacto .lab__idx,
+#contacto .display,
+#contacto .serif,
+#contacto .lead,
+#contacto .form__label,
+#contacto .form__note,
+#contacto .req{ color:#fff; }
+#contacto .lab__line{ background:#fff; opacity:.7; }
+#contacto .form__input{ color:#fff; border-bottom-color:rgba(255,255,255,.55); }
+#contacto .form__input::placeholder{ color:rgba(255,255,255,.6); }
+#contacto .form__input:focus{ border-bottom-color:#fff; box-shadow:none; }
+#contacto .form__input.is-invalid{ border-bottom-color:#ffd9cc; }
+#contacto .form__error{ color:#ffe2d8; }
+/* Botón enviar: blanco outline → hover relleno blanco con texto naranja */
+#contacto .btn--submit{ background:transparent; border:1.5px solid #fff; color:#fff; }
+#contacto .btn--submit:hover{ background:#fff; color:var(--obrown); border-color:#fff; }
+#contacto .form__alert--ok{ background:#fff; color:var(--obrown); }
+#contacto .form__alert--err{ background:#7a1500; color:#fff; }
