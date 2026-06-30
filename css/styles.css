@@ -1004,3 +1004,15 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 }
 .matcard__text{ margin:1rem 0 0; color:var(--slate); font-size:1.05rem; line-height:1.5; max-width:36ch; }
 @media (max-width:640px){ .mat-grid{ grid-template-columns:1fr; gap:var(--sp-4); } }
+
+/* Materiales: imagen REDONDA dentro de las tarjetas (mantiene el efecto de apilado) */
+.materiales .mat__media{
+  aspect-ratio:1/1; border-radius:50%; overflow:hidden;
+  width:min(280px,72%); margin-inline:auto;
+  border:1px solid var(--faint); box-shadow:0 12px 36px rgba(26,23,19,.14);
+}
+.materiales .mat__img{ width:100%; height:100%; aspect-ratio:1/1; object-fit:cover; }
+@media (min-width:768px){
+  .materiales .mat-stack .mat__media{ width:min(46vh,420px); aspect-ratio:1/1; max-height:none; }
+  .materiales .mat-stack .mat__img{ aspect-ratio:1/1; max-height:none; }
+}
