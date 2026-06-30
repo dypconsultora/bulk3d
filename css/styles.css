@@ -878,3 +878,48 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 #contacto .btn--submit:hover{ background:#fff; color:var(--obrown); border-color:#fff; }
 #contacto .form__alert--ok{ background:#fff; color:var(--obrown); }
 #contacto .form__alert--err{ background:#7a1500; color:#fff; }
+
+/* ============================================================
+   AUDITORÍA DE DISEÑO — header refinado, agrupado, degradés
+   ============================================================ */
+/* Controles de la derecha agrupados (CTA + toggle + hamburguesa) */
+.header__actions{ display:flex; align-items:center; gap:.55rem; }
+
+/* Píldora flotante arriba; al scrollear: barra full-width con contenido centrado */
+.site-header{ padding:14px clamp(14px,4vw,40px) 0; }
+.site-header.is-scrolled{
+  padding:0;
+  background:var(--glass-2);
+  backdrop-filter:saturate(150%) blur(14px); -webkit-backdrop-filter:saturate(150%) blur(14px);
+  border-bottom:1px solid var(--glass-border);
+}
+.header__inner{
+  max-width:1120px; margin-inline:auto;
+  background:var(--glass); border:1px solid var(--glass-border); border-radius:999px;
+  box-shadow:0 10px 34px rgba(26,23,19,.12);
+  backdrop-filter:saturate(150%) blur(14px); -webkit-backdrop-filter:saturate(150%) blur(14px);
+  transition:max-width var(--t-med), border-radius var(--t-med), background var(--t-med),
+             box-shadow var(--t-med), border-color var(--t-med);
+}
+/* Al scrollear el contenido sigue centrado (no se pega a los bordes) */
+.site-header.is-scrolled .header__inner{
+  max-width:1200px; background:transparent; border-color:transparent;
+  border-radius:0; box-shadow:none;
+}
+
+/* Degradés de color en secciones */
+.section--orange{
+  background:linear-gradient(135deg, var(--naranja-hi) 0%, var(--naranja) 52%, var(--naranja-lo) 100%);
+}
+.section--dark{
+  background:linear-gradient(180deg, var(--carbon) 0%, #0E0C08 100%);
+}
+/* Indicador de scroll: ocultar en mobile (chocaba con los botones) */
+@media (max-width:768px){ .hero__scroll{ display:none; } }
+
+/* Hero en mobile: contenido un poco más arriba para que entre el título */
+@media (max-width:600px){
+  .hero{ justify-content:flex-end; }
+  .hero__inner{ padding-bottom:clamp(3rem,9vh,5rem); }
+  .hero__title{ font-size:clamp(2.1rem,9vw,3rem); }
+}
