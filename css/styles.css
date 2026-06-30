@@ -980,3 +980,27 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
    para no dejar un degradé suelto entre dos secciones planas. */
 #proceso, #porque{ background:var(--carbon); }
 #contacto{ background:var(--naranja); }
+
+/* ============================================================
+   MATERIALES — grilla 2×2 con miniaturas redondas (estilo placa)
+   ============================================================ */
+#materiales{ padding-block:clamp(4rem,10vw,9rem); }   /* simétrico (anula el bottom:0 viejo) */
+.mat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5) var(--sp-5); margin-top:var(--sp-5); }
+.matcard__top{ display:flex; align-items:center; gap:1.25rem; }
+.matcard__thumb{
+  flex:none; width:clamp(86px, 9vw, 118px); height:clamp(86px, 9vw, 118px);
+  border-radius:50%; overflow:hidden; border:1px solid var(--faint);
+  box-shadow:0 8px 22px rgba(26,23,19,.12);
+}
+.matcard__thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.matcard__name{
+  font-family:var(--font-black); font-weight:400; line-height:1; letter-spacing:.01em;
+  font-size:clamp(1.5rem, 3vw, 2.1rem); text-transform:uppercase; color:var(--tinta);
+}
+.matcard__prop{
+  display:block; margin-top:.45rem;
+  font-family:var(--font-body); font-weight:600; font-size:.72rem;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--naranja);
+}
+.matcard__text{ margin:1rem 0 0; color:var(--slate); font-size:1.05rem; line-height:1.5; max-width:36ch; }
+@media (max-width:640px){ .mat-grid{ grid-template-columns:1fr; gap:var(--sp-4); } }
