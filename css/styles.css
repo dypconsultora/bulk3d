@@ -170,21 +170,38 @@ button{ font-family:inherit; cursor:pointer; }
 .arrow-link:hover svg{ transform:translateX(5px); }
 .section--dark .arrow-link{ color:var(--crema); }
 
-/* ============================ HEADER / NAV ============================ */
+/* ============================ HEADER / NAV (píldora → se estira) ============================ */
 .site-header{
   position:fixed; inset:0 0 auto 0; z-index:1000;
-  transition:background var(--t-med), border-color var(--t-med);
-  border-bottom:1px solid transparent;
+  /* En el tope: separa la píldora de los bordes. Al scrollear: pega a 0. */
+  padding:14px clamp(14px, 4vw, 40px) 0;
+  transition:padding var(--t-med);
 }
-.site-header.is-scrolled{
-  background:rgba(242,238,230,.9);
-  backdrop-filter:saturate(140%) blur(10px);
-  -webkit-backdrop-filter:saturate(140%) blur(10px);
-  border-bottom-color:var(--faint);
-}
+.site-header.is-scrolled{ padding:0; }
+
+/* La píldora: glass translúcido SIEMPRE (arriba y al scrollear) */
 .header__inner{
   display:flex; align-items:center; justify-content:space-between;
   gap:1rem; height:var(--header-h);
+  max-width:1080px; margin-inline:auto;
+  padding-inline:clamp(1rem, 2.5vw, 1.75rem);
+  background:rgba(242,238,230,.6);
+  backdrop-filter:saturate(150%) blur(14px);
+  -webkit-backdrop-filter:saturate(150%) blur(14px);
+  border:1px solid rgba(26,23,19,.08);
+  border-radius:999px;
+  box-shadow:0 6px 24px rgba(26,23,19,.08);
+  transition:max-width var(--t-med), border-radius var(--t-med),
+             background var(--t-med), box-shadow var(--t-med), border-color var(--t-med);
+}
+/* Al scrollear: se estira a todo el ancho y se aplana (sigue translúcido) */
+.site-header.is-scrolled .header__inner{
+  max-width:100%;
+  border-radius:0;
+  background:rgba(242,238,230,.7);
+  border-color:transparent;
+  border-bottom:1px solid var(--faint);
+  box-shadow:0 1px 0 rgba(26,23,19,.04);
 }
 .wordmark{
   font-family:var(--font-body); font-weight:700;
@@ -289,10 +306,7 @@ button{ font-family:inherit; cursor:pointer; }
 .hero__actions{ display:flex; flex-wrap:wrap; gap:1rem; align-items:center; }
 .arrow-link--hero{ color:var(--crema); }
 
-/* Header legible sobre el hero oscuro (hasta que aparece el fondo papel) */
-.site-header:not(.is-scrolled) .wordmark__rest{ color:var(--crema); }
-.site-header:not(.is-scrolled) .nav__link{ color:var(--crema); }
-.site-header:not(.is-scrolled) .nav-toggle__bar{ background:var(--crema); }
+/* La píldora es glass claro en ambos estados → texto oscuro siempre (legible). */
 
 /* ============================ MARQUEE ============================ */
 .marquee{
