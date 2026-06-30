@@ -285,11 +285,12 @@ button{ font-family:inherit; cursor:pointer; }
 }
 .hero__title{
   font-family:var(--font-display); font-weight:400;
-  font-size:clamp(3.2rem, 16vw, 13rem);
-  line-height:.86; letter-spacing:-.03em;
+  font-size:clamp(2.6rem, 12vw, 10rem);
+  line-height:.96; letter-spacing:-.03em;
   text-transform:uppercase; margin:var(--sp-4) 0 0; color:#fff;
 }
-.hero__title .d-line{ display:block; overflow:hidden; }
+/* padding-block da aire para que la máscara no corte colas/ascendentes */
+.hero__title .d-line{ display:block; overflow:hidden; padding-block:.06em .16em; }
 .hero__title .d-line > span{ display:block; }
 /* Líneas blancas en mix-blend-difference (invierten sobre el silk).
    La palabra serif de énfasis queda en naranja legible (sin blend). */
