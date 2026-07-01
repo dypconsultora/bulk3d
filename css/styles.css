@@ -1016,3 +1016,24 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
   .materiales .mat-stack .mat__media{ width:min(46vh,420px); aspect-ratio:1/1; max-height:none; }
   .materiales .mat-stack .mat__img{ aspect-ratio:1/1; max-height:none; }
 }
+
+/* ============================================================
+   SELECTOR DÍA / NOCHE (segmentado, en vez de botón)
+   ============================================================ */
+.theme-switch{
+  display:inline-flex; align-items:center; gap:2px; flex:none;
+  padding:3px; border:1px solid var(--faint); border-radius:999px; background:transparent;
+}
+.theme-switch__opt{
+  display:inline-flex; align-items:center; gap:.34rem;
+  padding:.42rem .74rem; border:0; border-radius:999px; background:transparent;
+  color:var(--tinta); cursor:pointer;
+  font-family:var(--font-body); font-weight:500; font-size:.78rem; letter-spacing:.03em;
+  transition:background var(--t-fast), color var(--t-fast);
+}
+.theme-switch__opt svg{ width:15px; height:15px; }
+.theme-switch__opt[aria-pressed="true"]{ background:var(--naranja); color:#fff; }
+.theme-switch__opt[aria-pressed="false"]:hover{ color:var(--naranja); }
+.theme-switch__opt:focus-visible{ outline:3px solid var(--naranja); outline-offset:3px; }
+/* Compacto en mobile: solo íconos */
+@media (max-width:520px){ .theme-switch__opt span{ display:none; } .theme-switch__opt{ padding:.42rem .5rem; } }

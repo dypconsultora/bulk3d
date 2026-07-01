@@ -48,28 +48,32 @@
      0.4 Selector día / noche (independiente de GSAP). El tema inicial ya
      lo aplica el script inline del <head> (anti-parpadeo).
   ------------------------------------------------------------------ */
-  const themeToggle = document.getElementById("themeToggle");
-  if (themeToggle) {
+  const themeSwitch = document.getElementById("themeSwitch");
+  if (themeSwitch) {
     const root = document.documentElement;
+    const opts = themeSwitch.querySelectorAll("[data-theme-set]");
     const sync = () => {
       const dark = root.getAttribute("data-theme") === "dark";
-      themeToggle.setAttribute("aria-pressed", String(dark));
-      themeToggle.setAttribute(
-        "aria-label",
-        dark ? "Cambiar a modo día" : "Cambiar a modo noche"
+      opts.forEach((o) =>
+        o.setAttribute(
+          "aria-pressed",
+          String(o.dataset.themeSet === (dark ? "dark" : "light"))
+        )
       );
     };
     sync();
-    themeToggle.addEventListener("click", () => {
-      const dark = root.getAttribute("data-theme") === "dark";
-      if (dark) root.removeAttribute("data-theme");
-      else root.setAttribute("data-theme", "dark");
-      try {
-        localStorage.setItem("bulk-theme", dark ? "light" : "dark");
-      } catch (e) {}
-      sync();
-      if (window.ScrollTrigger) ScrollTrigger.refresh();
-    });
+    opts.forEach((o) =>
+      o.addEventListener("click", () => {
+        const dark = o.dataset.themeSet === "dark";
+        if (dark) root.setAttribute("data-theme", "dark");
+        else root.removeAttribute("data-theme");
+        try {
+          localStorage.setItem("bulk-theme", dark ? "dark" : "light");
+        } catch (e) {}
+        sync();
+        if (window.ScrollTrigger) ScrollTrigger.refresh();
+      })
+    );
   }
 
   /* ------------------------------------------------------------------
