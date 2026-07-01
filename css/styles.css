@@ -1039,22 +1039,21 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 @media (max-width:520px){ .theme-switch__opt span{ display:none; } .theme-switch__opt{ padding:.42rem .5rem; } }
 
 /* ============================================================
-   EQUIPAMIENTO: scroll horizontal NATIVO (sin pin) — anula el panel pineado
+   EQUIPAMIENTO: vuelve el PIN (panel opaco 100svh que cubre lo de atrás).
+   En mobile (<960) es scroll horizontal nativo.
    ============================================================ */
-.equipamiento{ padding-bottom:clamp(3rem,7vw,5rem); }
+.equipamiento{ padding-bottom:0; }
 .hscroll{
-  min-height:0; background:transparent;
-  display:block;
-  overflow-x:auto; overflow-y:hidden;
-  scroll-snap-type:x proximity;
-  -webkit-overflow-scrolling:touch;
-  scroll-padding-left:var(--gutter);
-  padding-block:var(--sp-4) var(--sp-3);
+  position:relative; min-height:100svh;
+  display:flex; align-items:center;
+  overflow:hidden; background:var(--papel);
 }
 .hscroll__track{ display:flex; gap:0; width:max-content; }
-.machine{ scroll-snap-align:start; }
-/* scrollbar fina y discreta */
-.hscroll{ scrollbar-width:thin; scrollbar-color:var(--faint) transparent; }
-.hscroll::-webkit-scrollbar{ height:6px; }
-.hscroll::-webkit-scrollbar-thumb{ background:var(--faint); border-radius:99px; }
-.hscroll::-webkit-scrollbar-track{ background:transparent; }
+@media (max-width:959px){
+  .hscroll{
+    min-height:0; display:block; align-items:initial;
+    overflow-x:auto; overflow-y:hidden;
+    -webkit-overflow-scrolling:touch; padding-block:var(--sp-4) var(--sp-3);
+  }
+  .equipamiento{ padding-bottom:clamp(3rem,7vw,5rem); }
+}

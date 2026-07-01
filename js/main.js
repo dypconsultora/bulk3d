@@ -391,10 +391,39 @@
      elimina el conflicto entre dos secciones pineadas seguidas (era lo que
      hacía que las impresoras se pisaran con los materiales). Ver styles.css. */
 
-  /* ===== Equipamiento: scroll horizontal NATIVO (sin pin) =====
-     Se saca el pin para eliminar de raíz cualquier conflicto con el apilado
-     sticky de Materiales. La fila de impresoras se desliza/arrastra en el eje X
-     (CSS: overflow-x:auto). Cero pins en la página → no se rompe. */
+  /* ===== Equipamiento: scroll horizontal PINEADO (solo desktop ≥960) =====
+     Al llegar, la sección se frena (pin) y las impresoras se desplazan al
+     costado con el scroll; al final hace una pausa y sigue. El panel es opaco
+     y ocupa todo el viewport (CSS) para cubrir lo de atrás. En mobile: nativo. */
+  mm.add("(min-width: 960px)", () => {
+    const wrap = document.querySelector("[data-hscroll]");
+    const track = document.querySelector("[data-hscroll-track]");
+    if (!wrap || !track) return;
+
+    const getScrollAmount = () => track.scrollWidth - window.innerWidth;
+    const MOVE_FACTOR = 1.5;                          // recorrido (más = más lento)
+    const getHold = () => window.innerHeight * 1.2;   // pausa al final
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: wrap,
+        start: "top top",
+        end: () => "+=" + (getScrollAmount() * MOVE_FACTOR + getHold()),
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
+      },
+    });
+    tl.to(track, {
+      x: () => -getScrollAmount(),
+      ease: "none",
+      duration: getScrollAmount() * MOVE_FACTOR,
+    });
+    tl.to({}, { duration: getHold() });               // se queda la última visible
+
+    return () => tl.kill();
+  });
 
   /* ------------------------------------------------------------------
      4. Refresh tras cargar fuentes/imágenes (evita posiciones erróneas)
