@@ -402,7 +402,7 @@
 
     const getScrollAmount = () => track.scrollWidth - window.innerWidth;
     const MOVE_FACTOR = 1.5;                          // recorrido (más = más lento)
-    const getHold = () => window.innerHeight * 1.2;   // pausa al final
+    const getHold = () => window.innerHeight * 0.75;  // pausa al final (más corta)
 
     const tl = gsap.timeline({
       scrollTrigger: {
