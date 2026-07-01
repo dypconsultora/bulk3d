@@ -1057,3 +1057,9 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
   }
   .equipamiento{ padding-bottom:clamp(3rem,7vw,5rem); }
 }
+
+/* Footer minimal: solo la barra de copyright fina */
+.site-footer{ padding-top:0; }
+.site-footer .footer__bottom{ border-top:1px solid rgba(238,232,222,.18); }
+.footer__by{ color:var(--faint); transition:color var(--t-fast); }
+.footer__by:hover{ color:var(--naranja); }
