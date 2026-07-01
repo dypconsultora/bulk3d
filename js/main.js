@@ -391,47 +391,10 @@
      elimina el conflicto entre dos secciones pineadas seguidas (era lo que
      hacía que las impresoras se pisaran con los materiales). Ver styles.css. */
 
-  /* ===== 3g. Equipamiento: scroll horizontal pineado (solo desktop) ===== */
-  mm.add("(min-width: 960px)", () => {
-    const wrap = document.querySelector("[data-hscroll]");
-    const track = document.querySelector("[data-hscroll-track]");
-    if (!wrap || !track) return;
-
-    // Distancia a desplazar = ancho total del track - viewport
-    const getScrollAmount = () => track.scrollWidth - window.innerWidth;
-    const MOVE_FACTOR = 1.6;                 // más recorrido = movimiento más lento
-    const getHold = () => window.innerHeight * 1.4; // pausa al final (se ve la última)
-
-    // Timeline pineada: mueve el track y al final HOLD (queda quieto un momento)
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: wrap,
-        start: "top top",
-        end: () => "+=" + (getScrollAmount() * MOVE_FACTOR + getHold()),
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        anticipatePin: 1,
-        refreshPriority: 2, // refresca después de Materiales (más abajo en la página)
-      },
-    });
-    // duración en "px" → mapeo lineal con el scroll
-    tl.to(track, {
-      x: () => -getScrollAmount(),
-      ease: "none",                          // OBLIGATORIO para que scroll y posición coincidan
-      duration: getScrollAmount() * MOVE_FACTOR,
-    });
-    tl.to({}, { duration: getHold() });      // pausa: la última impresora queda visible
-
-    return () => tl.kill();
-  });
-
-  /* En mobile el equipamiento es scroll horizontal nativo (overflow-x).
-     Activamos el desplazamiento táctil sin pin. */
-  mm.add("(max-width: 959px)", () => {
-    const hscroll = document.querySelector("[data-hscroll]");
-    if (hscroll) hscroll.style.overflowX = "auto";
-  });
+  /* ===== Equipamiento: scroll horizontal NATIVO (sin pin) =====
+     Se saca el pin para eliminar de raíz cualquier conflicto con el apilado
+     sticky de Materiales. La fila de impresoras se desliza/arrastra en el eje X
+     (CSS: overflow-x:auto). Cero pins en la página → no se rompe. */
 
   /* ------------------------------------------------------------------
      4. Refresh tras cargar fuentes/imágenes (evita posiciones erróneas)
