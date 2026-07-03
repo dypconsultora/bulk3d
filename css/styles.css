@@ -102,7 +102,7 @@ button{ font-family:inherit; cursor:pointer; }
 .lab{
   display:flex; align-items:center; gap:.75rem;
   font-family:var(--font-body); font-weight:600;
-  font-size:.78rem; letter-spacing:.22em; text-transform:uppercase;
+  font-size:1.56rem; letter-spacing:.22em; text-transform:uppercase;
   color:var(--slate); margin:0 0 var(--sp-4);
 }
 .section--dark .lab{ color:var(--crema); opacity:.7; }
