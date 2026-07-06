@@ -206,8 +206,13 @@ button{ font-family:inherit; cursor:pointer; }
 .wordmark{
   font-family:var(--font-body); font-weight:700;
   font-size:1.1rem; letter-spacing:.04em;
-  display:inline-flex; white-space:nowrap;
+  display:inline-flex; align-items:center; white-space:nowrap;
 }
+.wordmark__img{
+  height:52px; width:auto; display:block;
+  transition:height .3s ease;
+}
+.site-header.is-scrolled .wordmark__img{ height:46px; }
 .wordmark__bulk{ color:var(--naranja); }
 .wordmark__rest{ color:var(--tinta); }
 .wordmark__rest--cream{ color:var(--crema); }
@@ -857,6 +862,10 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 /* Nav un poco más grande */
 .nav__link{ font-size:.92rem; }
 .wordmark{ font-size:1.18rem; }
+@media (max-width:600px){
+  .wordmark__img{ height:42px; }
+  .site-header.is-scrolled .wordmark__img{ height:38px; }
+}
 
 /* ---- CONTACTO: todo el texto en blanco (sobre el naranja) ---- */
 #contacto .lab,
