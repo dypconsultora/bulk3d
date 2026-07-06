@@ -850,7 +850,7 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
   .contacto__copy{ display:flex; flex-direction:column; }
   .contacto__logo{
     display:block; margin-top:auto; align-self:flex-start;
-    width:auto; height:auto; max-height:190px; max-width:70%;
+    width:auto; height:auto; max-height:132px; max-width:60%;
     object-fit:contain; object-position:left bottom;
     padding-top:1.75rem;
   }
