@@ -71,7 +71,12 @@
           localStorage.setItem("bulk-theme", dark ? "dark" : "light");
         } catch (e) {}
         sync();
-        if (window.ScrollTrigger) ScrollTrigger.refresh();
+        // OJO: NO llamar ScrollTrigger.refresh() acá. El cambio de tema es solo
+        // color (no altera el layout: docH/altura del pin son idénticos), así que
+        // el refresh es innecesario. Y si se llama mientras estás scrolleado
+        // DENTRO del pin horizontal de Equipamiento, ese refresh desincroniza el
+        // pin (la sección deja de estar pineada y las impresoras "saltan"). Sin el
+        // refresh, cambiar de día/noche en cualquier posición no rompe nada.
       })
     );
   }
