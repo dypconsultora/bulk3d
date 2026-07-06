@@ -843,19 +843,6 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 .ccard--wide .ccard__v{ font-weight:600; }
 @media (max-width:520px){ .ccards{ grid-template-columns:1fr; } }
 
-/* Logo en el espacio vacío de la columna izquierda de contacto (solo desktop),
-   pegado abajo para que no pase la línea del final del formulario */
-.contacto__logo{ display:none; }
-@media (min-width:768px){
-  .contacto__copy{ display:flex; flex-direction:column; }
-  .contacto__logo{
-    display:block; margin-top:auto; align-self:flex-start;
-    width:auto; height:auto; max-height:132px; max-width:60%;
-    object-fit:contain; object-position:left bottom;
-    padding-top:1.75rem;
-  }
-}
-
 /* ============================================================
    NAV CTA (WhatsApp) + nav más grande + CONTACTO todo en blanco
    ============================================================ */
