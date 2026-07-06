@@ -209,10 +209,10 @@ button{ font-family:inherit; cursor:pointer; }
   display:inline-flex; align-items:center; white-space:nowrap;
 }
 .wordmark__img{
-  height:52px; width:auto; display:block;
+  height:40px; width:auto; max-height:calc(var(--header-h) - 28px); display:block;
   transition:height .3s ease;
 }
-.site-header.is-scrolled .wordmark__img{ height:46px; }
+.site-header.is-scrolled .wordmark__img{ height:40px; }
 .wordmark__bulk{ color:var(--naranja); }
 .wordmark__rest{ color:var(--tinta); }
 .wordmark__rest--cream{ color:var(--crema); }
@@ -863,8 +863,8 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 .nav__link{ font-size:.92rem; }
 .wordmark{ font-size:1.18rem; }
 @media (max-width:600px){
-  .wordmark__img{ height:42px; }
-  .site-header.is-scrolled .wordmark__img{ height:38px; }
+  .wordmark__img{ height:36px; }
+  .site-header.is-scrolled .wordmark__img{ height:36px; }
 }
 
 /* ---- CONTACTO: todo el texto en blanco (sobre el naranja) ---- */
