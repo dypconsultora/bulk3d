@@ -396,11 +396,11 @@
      elimina el conflicto entre dos secciones pineadas seguidas (era lo que
      hacía que las impresoras se pisaran con los materiales). Ver styles.css. */
 
-  /* ===== Equipamiento: scroll horizontal PINEADO (solo desktop ≥960) =====
+  /* ===== Equipamiento: scroll horizontal PINEADO (todos los tamaños) =====
      Al llegar, la sección se frena (pin) y las impresoras se desplazan al
      costado con el scroll; al final hace una pausa y sigue. El panel es opaco
-     y ocupa todo el viewport (CSS) para cubrir lo de atrás. En mobile: nativo. */
-  mm.add("(min-width: 960px)", () => {
+     y ocupa todo el viewport (CSS) para cubrir lo de atrás. También en mobile. */
+  mm.add("all", () => {
     const wrap = document.querySelector("[data-hscroll]");
     const track = document.querySelector("[data-hscroll-track]");
     if (!wrap || !track) return;

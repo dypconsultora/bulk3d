@@ -712,19 +712,26 @@ button{ font-family:inherit; cursor:pointer; }
    Al terminar, Equipamiento (único pin de la página) se lleva todo.
    (Requiere que ningún ancestro tenga overflow:hidden → body usa clip.)
    ============================================================ */
+/* Apilado sticky en TODOS los tamaños (también mobile). En mobile: 1 columna. */
+.materiales .mat-stack{ position:relative; overflow:visible; }
+.materiales .mat-stack .mat{
+  position:sticky; top:var(--header-h);
+  min-height:calc(100svh - var(--header-h));
+  margin:0; padding-block:var(--sp-3);
+  background:var(--papel);
+  border-top:1px solid var(--faint);
+  display:grid; grid-template-columns:1fr; gap:var(--sp-2);
+  align-items:center; align-content:center;
+}
+.materiales .mat-stack .mat__media{ order:-1; }
+.materiales .mat-stack .mat__img{ aspect-ratio:16/10; max-height:34vh; object-fit:cover; }
 @media (min-width:768px){
-  .materiales .mat-stack{ position:relative; overflow:visible; }
   .materiales .mat-stack .mat{
-    position:sticky; top:var(--header-h);
-    min-height:calc(100svh - var(--header-h));
-    margin:0; padding-block:var(--sp-4);
-    background:var(--papel);
-    border-top:1px solid var(--faint);
-    display:grid; grid-template-columns:.9fr 1.1fr; gap:var(--sp-5);
-    align-items:center; align-content:center;
+    padding-block:var(--sp-4);
+    grid-template-columns:.9fr 1.1fr; gap:var(--sp-5);
   }
   .materiales .mat-stack .mat__media{ order:0; }
-  .materiales .mat-stack .mat__img{ aspect-ratio:16/10; max-height:52vh; object-fit:cover; }
+  .materiales .mat-stack .mat__img{ max-height:52vh; }
 }
 
 /* ============================================================
@@ -1058,14 +1065,8 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
   overflow:hidden; background:var(--papel);
 }
 .hscroll__track{ display:flex; gap:0; width:max-content; }
-@media (max-width:959px){
-  .hscroll{
-    min-height:0; display:block; align-items:initial;
-    overflow-x:auto; overflow-y:hidden;
-    -webkit-overflow-scrolling:touch; padding-block:var(--sp-4) var(--sp-3);
-  }
-  .equipamiento{ padding-bottom:clamp(3rem,7vw,5rem); }
-}
+/* En mobile también queda el panel pineado (mismo efecto que desktop): el JS
+   pinea .hscroll y el track se desplaza horizontal con el scroll vertical. */
 
 /* Footer minimal: solo la barra de copyright fina */
 .site-footer{ padding-top:0; }
