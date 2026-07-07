@@ -1067,6 +1067,12 @@ a.ccard:hover .ccard__arrow{ transform:translate(3px,-3px); opacity:1; }
 .hscroll__track{ display:flex; gap:0; width:max-content; }
 /* En mobile también queda el panel pineado (mismo efecto que desktop): el JS
    pinea .hscroll y el track se desplaza horizontal con el scroll vertical. */
+@media (max-width:959px){
+  /* El nav flota arriba: centro el contenido en el área DEBAJO del nav para que
+     no se tape la imagen arriba ni quede aire abajo. Imagen acotada -> entra todo. */
+  .hscroll{ padding-top:var(--header-h); padding-bottom:var(--sp-3); }
+  .machine__img{ max-height:38svh; }
+}
 
 /* Footer minimal: solo la barra de copyright fina */
 .site-footer{ padding-top:0; }
