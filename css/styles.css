@@ -448,12 +448,17 @@ button{ font-family:inherit; cursor:pointer; }
   flex:0 0 auto; width:min(86vw, 460px);
   padding-inline:var(--gutter);
   border-right:1px solid var(--faint);
+  display:flex; flex-direction:column;
 }
 .machine:first-child{ padding-left:var(--gutter); }
 .machine__media{ overflow:hidden; margin-bottom:var(--sp-3); }
 .machine__img{
   width:100%; aspect-ratio:1/1; object-fit:contain;
   background:transparent; will-change:transform;
+  /* cada impresora se escala (tamaño) y se corre en vertical (--mshift) para
+     que todas queden niveladas sobre la misma línea de piso */
+  transform:scale(var(--mscale,1)); transform-origin:center;
+  position:relative; top:var(--mshift,0);
 }
 .machine__model{
   font-family:var(--font-display); font-weight:400;
@@ -462,10 +467,14 @@ button{ font-family:inherit; cursor:pointer; }
 }
 .machine__tag{ font-family:var(--font-serif); font-style:italic; color:var(--naranja); font-size:1.3rem; margin:.3rem 0 var(--sp-2); display:block; }
 .machine__desc{ color:var(--slate); font-size:1rem; margin:0 0 var(--sp-3); }
-.machine__specs{ border-top:1px solid var(--faint); }
+/* Empuja el bloque de specs al fondo -> como todas las tarjetas tienen la misma
+   altura, los specs quedan alineados en todas las impresoras */
+.machine__specs{ border-top:1px solid var(--faint); margin-top:auto; }
 .machine__spec{ display:flex; justify-content:space-between; gap:1rem; padding:.7rem 0; border-bottom:1px solid var(--faint); }
-.machine__spec dt{ color:var(--slate); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; }
-.machine__spec dd{ margin:0; font-family:var(--font-black); font-size:.92rem; text-align:right; color:var(--tinta); }
+.machine__spec dt{ color:var(--slate); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; flex-shrink:0; }
+/* valores en una sola línea -> todas las filas miden igual y los specs quedan
+   perfectamente alineados entre impresoras */
+.machine__spec dd{ margin:0; font-family:var(--font-black); font-size:.92rem; text-align:right; color:var(--tinta); white-space:nowrap; }
 .hscroll__hint{ font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--slate); margin-top:var(--sp-3); }
 
 /* ============================ PRODUCCIÓN ============================ */
